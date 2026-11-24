@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "message": "상품이율조회가 완료되었습니다.",
+  "data": [
+    {
+      "alAcctGb": "정기예금",
+      "alRealAmt": "10000000",
+      "alPrd": "365",
+      "alRate": "3.25",
+      "alBfTaxAmt": "325000",
+      "alTaxAmt": "56875",
+      "alAfTaxAmt": "268125",
+      "alAmt": "10268125"
+    },
+    {
+      "alAcctGb": "정기적금",
+      "alRealAmt": "500000",
+      "alPrd": "720",
+      "alRate": "3.15",
+      "alBfTaxAmt": "315000",
+      "alTaxAmt": "55125",
+      "alAfTaxAmt": "259875",
+      "alAmt": "18259875"
+    },
+    {
+      "alAcctGb": "자유적금",
+      "alRealAmt": "1000000",
+      "alPrd": "365",
+      "alRate": "2.85",
+      "alBfTaxAmt": "28500",
+      "alTaxAmt": "4988",
+      "alAfTaxAmt": "23512",
+      "alAmt": "1023512"
+    },
+    {
+      "alAcctGb": "CMA",
+      "alRealAmt": "5000000",
+      "alPrd": "1",
+      "alRate": "2.45",
+      "alBfTaxAmt": "336",
+      "alTaxAmt": "59",
+      "alAfTaxAmt": "277",
+      "alAmt": "5000277"
+    }
+  ],
+  "totalCount": 4,
+  "pageInfo": {
+    "currentPage": 1,
+    "pageSize": 10,
+    "totalPages": 1
+  },
+  "requestUrl": "/api/cns/cns0130/r01",
+  "requestData": {
+    "alAcctGb": "정기예금",
+    "alRealAmt": "10000000",
+    "alPrd": "365"
+  },
+  "timestamp": "2025-01-14T10:30:00.000Z"
+}

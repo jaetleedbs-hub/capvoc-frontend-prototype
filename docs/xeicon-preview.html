@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XEIcon 아이콘 미리보기</title>
+    <link rel="stylesheet" href="src/assets/styles/xeicon.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .search-box {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #searchInput {
+            padding: 10px 15px;
+            width: 300px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .icon-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .icon-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .icon-display {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .icon-class {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #666;
+            word-break: break-all;
+        }
+        .category-title {
+            grid-column: 1 / -1;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0 10px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+        .stats {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>XEIcon 아이콘 미리보기</h1>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="아이콘 이름으로 검색...">
+        </div>
+        
+        <div class="stats">
+            <span id="totalCount">총 0개</span> | 
+            <span id="visibleCount">표시: 0개</span>
+        </div>
+
+        <div class="icon-grid" id="iconGrid">
+            <!-- 아이콘들이 여기에 동적으로 추가됩니다 -->
+        </div>
+    </div>
+
+    <script>
+        // 아이콘 데이터 정의
+        const iconCategories = {
+            '화살표 및 네비게이션': [
+                'xi-angle-down', 'xi-angle-down-min', 'xi-angle-down-thin',
+                'xi-angle-left', 'xi-angle-left-thin', 'xi-angle-left-min',
+                'xi-angle-right', 'xi-angle-right-min', 'xi-angle-right-thin',
+                'xi-angle-up', 'xi-angle-up-min', 'xi-angle-up-thin',
+                'xi-arrow-bottom', 'xi-arrow-down', 'xi-arrow-left', 'xi-arrow-right', 'xi-arrow-top', 'xi-arrow-up',
+                'xi-arrows', 'xi-arrows-alt', 'xi-arrows-h', 'xi-arrows-v',
+                'xi-caret-down', 'xi-caret-down-circle', 'xi-caret-down-circle-o', 'xi-caret-down-min', 'xi-caret-down-square', 'xi-caret-down-square-o',
+                'xi-caret-up', 'xi-caret-up-circle', 'xi-caret-up-circle-o', 'xi-caret-up-min', 'xi-caret-up-square', 'xi-caret-up-square-o',
+                'xi-long-arrow-down', 'xi-long-arrow-left', 'xi-long-arrow-right', 'xi-long-arrow-up',
+                'xi-subdirectory', 'xi-subdirectory-arrow'
+            ],
+            '기본 UI 요소': [
+                'xi-bars', 'xi-apps', 'xi-compress', 'xi-compress-square', 'xi-expand', 'xi-expand-square',
+                'xi-dashboard', 'xi-dashboard-o', 'xi-drag-handle', 'xi-drag-vertical',
+                'xi-ellipsis-h', 'xi-ellipsis-v', 'xi-external-link',
+                'xi-eye', 'xi-eye-o', 'xi-eye-off', 'xi-eye-off-o',
+                'xi-filter', 'xi-flag', 'xi-flag-o',
+                'xi-hamburger-back', 'xi-hamburger-out',
+                'xi-home', 'xi-home-o', 'xi-lock', 'xi-lock-o',
+                'xi-log-in', 'xi-log-out', 'xi-refresh', 'xi-renew',
+                'xi-scroll', 'xi-search', 'xi-sync', 'xi-trash', 'xi-trash-o',
+                'xi-unlock', 'xi-unlock-o', 'xi-wrench',
+                'xi-zoom-in', 'xi-zoom-out'
+            ],
+            '체크 및 상태': [
+                'xi-check', 'xi-check-circle', 'xi-check-circle-o', 'xi-check-min', 'xi-check-square', 'xi-check-square-o', 'xi-check-thin',
+                'xi-close', 'xi-close-circle', 'xi-close-circle-o', 'xi-close-min', 'xi-close-square', 'xi-close-square-o', 'xi-close-thin',
+                'xi-minus', 'xi-minus-circle', 'xi-minus-circle-o', 'xi-minus-min', 'xi-minus-square', 'xi-minus-square-o', 'xi-minus-thin',
+                'xi-plus', 'xi-plus-circle', 'xi-plus-circle-o', 'xi-plus-min', 'xi-plus-square', 'xi-plus-square-o', 'xi-plus-thin',
+                'xi-radiobox-blank', 'xi-radiobox-checked',
+                'xi-switch-off', 'xi-switch-on', 'xi-toggle-off', 'xi-toggle-on'
+            ],
+            '도구 및 액션': [
+                'xi-cut', 'xi-label', 'xi-label-o', 'xi-library-add', 'xi-library-bookmark',
+                'xi-lightbulb', 'xi-lightbulb-o', 'xi-link', 'xi-package', 'xi-pen', 'xi-pen-o',
+                'xi-redo', 'xi-reply', 'xi-reply-all', 'xi-save', 'xi-send', 'xi-undo',
+                'xi-bookmark', 'xi-bookmark-o'
+            ],
+            '통신 및 소셜': [
+                'xi-at', 'xi-call', 'xi-call-made', 'xi-call-missed', 'xi-call-received',
+                'xi-comment', 'xi-comment-o', 'xi-crown', 'xi-emoticon', 'xi-emoticon-bad', 'xi-emoticon-bad-o',
+                'xi-emoticon-cool', 'xi-emoticon-cool-o', 'xi-emoticon-devil', 'xi-emoticon-devil-o',
+                'xi-emoticon-happy', 'xi-emoticon-happy-o', 'xi-emoticon-neutral', 'xi-emoticon-neutral-o',
+                'xi-emoticon-o', 'xi-emoticon-sad', 'xi-emoticon-sad-o',
+                'xi-forum', 'xi-forum-o', 'xi-group', 'xi-heart', 'xi-heart-o',
+                'xi-message', 'xi-message-o', 'xi-note', 'xi-note-o',
+                'xi-profile', 'xi-profile-o', 'xi-send2', 'xi-share', 'xi-share-alt', 'xi-share-alt-o',
+                'xi-speech', 'xi-speech-o', 'xi-star', 'xi-star-o',
+                'xi-thumbs-down', 'xi-thumbs-up', 'xi-trophy',
+                'xi-user', 'xi-user-address', 'xi-user-o', 'xi-user-plus', 'xi-user-plus-o',
+                'xi-users', 'xi-users-o', 'xi-users-plus', 'xi-video-call', 'xi-voicemail'
+            ],
+            '알림 및 시간': [
+                'xi-alarm', 'xi-alarm-o', 'xi-alarm-off', 'xi-ban', 'xi-bell', 'xi-bell-o', 'xi-bell-off', 'xi-bell-off-o',
+                'xi-calendar', 'xi-calendar-add', 'xi-calendar-cancle', 'xi-calendar-check', 'xi-calendar-list', 'xi-calendar-remove',
+                'xi-error', 'xi-error-o', 'xi-hand-paper', 'xi-help', 'xi-help-o',
+                'xi-info', 'xi-info-o', 'xi-key', 'xi-wifi', 'xi-new', 'xi-new-o',
+                'xi-security', 'xi-shield-checked', 'xi-shield-checked-o', 'xi-snooze', 'xi-time', 'xi-time-o', 'xi-warning'
+            ],
+            '텍스트 편집': [
+                'xi-align-center', 'xi-align-justify', 'xi-align-left', 'xi-align-right',
+                'xi-bold', 'xi-border-bottom', 'xi-border-clear', 'xi-border-color', 'xi-border-horizontal',
+                'xi-border-inner', 'xi-border-left', 'xi-border-outer', 'xi-border-right',
+                'xi-border-style', 'xi-border-top', 'xi-border-vertical', 'xi-caps', 'xi-code',
+                'xi-color-dropper', 'xi-color-fill', 'xi-color-helper', 'xi-crop', 'xi-dedent',
+                'xi-document', 'xi-eraser', 'xi-eraser-o', 'xi-face', 'xi-font', 'xi-border-all',
+                'xi-indent', 'xi-italic', 'xi-layout', 'xi-layout-aside', 'xi-layout-aside-o',
+                'xi-layout-column', 'xi-layout-column-o', 'xi-layout-full', 'xi-layout-full-o',
+                'xi-layout-o', 'xi-layout-snb', 'xi-layout-snb-o', 'xi-line-style', 'xi-line-weight',
+                'xi-line-height', 'xi-link-broken', 'xi-link-insert', 'xi-list', 'xi-list-dot',
+                'xi-list-number', 'xi-list-square', 'xi-omega', 'xi-opacity', 'xi-overscan',
+                'xi-palette', 'xi-paperclip', 'xi-paragraph', 'xi-rotate-left', 'xi-rotate-right',
+                'xi-scissors', 'xi-sort-asc', 'xi-sort-desc', 'xi-spellcheck', 'xi-strikethrough',
+                'xi-text-color', 'xi-text-format', 'xi-text-size', 'xi-text-type', 'xi-transform',
+                'xi-translate', 'xi-underline', 'xi-valign-bottom', 'xi-valign-center', 'xi-valign-top'
+            ],
+            '하드웨어 및 디바이스': [
+                'xi-airplay', 'xi-alarm-clock', 'xi-alarm-clock-o', 'xi-alarm-clock-off',
+                'xi-alt', 'xi-backspace', 'xi-battery', 'xi-battery-10', 'xi-battery-20',
+                'xi-battery-30', 'xi-battery-40', 'xi-battery-50', 'xi-battery-60',
+                'xi-battery-70', 'xi-battery-80', 'xi-battery-90', 'xi-battery-o',
+                'xi-bluetooth', 'xi-bluetooth-off', 'xi-bluetooth-on', 'xi-bluetooth-search',
+                'xi-brightness', 'xi-capslock', 'xi-clock', 'xi-clock-o', 'xi-command',
+                'xi-contrast', 'xi-desktop', 'xi-devices', 'xi-diskette', 'xi-enter',
+                'xi-esc', 'xi-fax', 'xi-flashlight', 'xi-flashlight-off', 'xi-flight-off',
+                'xi-flight-on', 'xi-gamepad', 'xi-gps', 'xi-gps-none', 'xi-gps-off',
+                'xi-hdd', 'xi-hdmi', 'xi-keyboard', 'xi-keyboard-o', 'xi-laptop',
+                'xi-lock-rotation', 'xi-memory', 'xi-memory-o', 'xi-mobile', 'xi-mouse',
+                'xi-mouse-pointer', 'xi-plug', 'xi-power-off', 'xi-presentation',
+                'xi-print', 'xi-projector', 'xi-router', 'xi-router-o', 'xi-sdcard',
+                'xi-signal', 'xi-signal-1', 'xi-signal-2', 'xi-signal-3', 'xi-signal-4',
+                'xi-signal-none', 'xi-space-bar', 'xi-speaker', 'xi-tab', 'xi-tablet',
+                'xi-touch', 'xi-tv', 'xi-usb', 'xi-usb-drive', 'xi-usim', 'xi-watch',
+                'xi-webcam', 'xi-wifi-signal', 'xi-wifi-signal-mid', 'xi-wifi-signal-min', 'xi-wifi-signal-off'
+            ],
+            '미디어 및 엔터테인먼트': [
+                'xi-album', 'xi-backward', 'xi-book', 'xi-book-o', 'xi-camera', 'xi-camera-o',
+                'xi-chart-bar', 'xi-chart-bar-square', 'xi-chart-line', 'xi-chart-pie',
+                'xi-chart-pie-o', 'xi-chart-pyramid', 'xi-eject', 'xi-equalizer',
+                'xi-equalizer-thin', 'xi-exposure', 'xi-fast-backward', 'xi-fast-forward',
+                'xi-flash', 'xi-flash-off', 'xi-focus-center', 'xi-focus-frame',
+                'xi-focus-weak', 'xi-forward', 'xi-game', 'xi-headset', 'xi-image',
+                'xi-image-o', 'xi-library-books', 'xi-library-books-o', 'xi-library-image',
+                'xi-library-image-o', 'xi-library-music', 'xi-library-video',
+                'xi-microphone', 'xi-microphone-o', 'xi-microphone-off', 'xi-movie',
+                'xi-movie-o', 'xi-music', 'xi-pacman', 'xi-paper', 'xi-paper-o',
+                'xi-pause', 'xi-pause-circle', 'xi-pause-circle-o', 'xi-play',
+                'xi-play-circle', 'xi-play-circle-o', 'xi-radio', 'xi-recording',
+                'xi-recording-stop', 'xi-repeat', 'xi-repeat-one', 'xi-shuffle',
+                'xi-step-backward', 'xi-step-forward', 'xi-stop', 'xi-timer',
+                'xi-timer-o', 'xi-timer-off-o', 'xi-timer-sand', 'xi-timer-sand-o',
+                'xi-trending-down', 'xi-trending-flat', 'xi-trending-up', 'xi-tune',
+                'xi-videocam', 'xi-videocam-o', 'xi-volume-down', 'xi-volume-mute',
+                'xi-volume-off', 'xi-volume-up'
+            ],
+            '교통 및 장소': [
+                'xi-airplane', 'xi-all', 'xi-bank', 'xi-beach', 'xi-bicycle',
+                'xi-building', 'xi-bus', 'xi-business', 'xi-cafe', 'xi-cake',
+                'xi-car', 'xi-church', 'xi-city', 'xi-compass', 'xi-compass-o',
+                'xi-convenience-store', 'xi-directions', 'xi-factory', 'xi-fitness-center',
+                'xi-flight-land', 'xi-flight-takeoff', 'xi-florist', 'xi-garden',
+                'xi-gas-station', 'xi-glass', 'xi-golf', 'xi-hand-pointing',
+                'xi-hlz', 'xi-hospital', 'xi-hotel', 'xi-laundry', 'xi-library',
+                'xi-location-arrow', 'xi-man', 'xi-map', 'xi-map-marker', 'xi-map-o',
+                'xi-marker-check', 'xi-marker-plus', 'xi-market', 'xi-motorcycle',
+                'xi-my-location', 'xi-navigation', 'xi-park', 'xi-pharmacy',
+                'xi-pin-drop', 'xi-pool', 'xi-pregnant-woman', 'xi-restaurant',
+                'xi-run', 'xi-school', 'xi-ship', 'xi-spa', 'xi-stroller',
+                'xi-subway', 'xi-taxi', 'xi-theater', 'xi-toilet', 'xi-traffic',
+                'xi-train', 'xi-walk', 'xi-wheelchair', 'xi-woman'
+            ],
+            '상거래 및 금융': [
+                'xi-basket', 'xi-box', 'xi-briefcase', 'xi-calculator', 'xi-cart',
+                'xi-cart-add', 'xi-cart-o', 'xi-cart-remove', 'xi-coupon',
+                'xi-credit-card', 'xi-dollar', 'xi-euro', 'xi-exchange',
+                'xi-fragile', 'xi-gift', 'xi-gift-o', 'xi-medicine', 'xi-money',
+                'xi-percent', 'xi-peso', 'xi-piggy-bank', 'xi-pound', 'xi-receipt',
+                'xi-rial', 'xi-rupee', 'xi-shop', 'xi-strongbox', 'xi-truck',
+                'xi-wallet', 'xi-won', 'xi-yen', 'xi-yuan'
+            ],
+            '파일 및 클라우드': [
+                'xi-attachment', 'xi-cloud', 'xi-cloud-download', 'xi-cloud-download-o',
+                'xi-cloud-o', 'xi-cloud-off', 'xi-cloud-upload', 'xi-cloud-upload-o',
+                'xi-documents', 'xi-documents-o', 'xi-download', 'xi-file',
+                'xi-file-add', 'xi-file-add-o', 'xi-file-check', 'xi-file-check-o',
+                'xi-file-code', 'xi-file-code-o', 'xi-file-download', 'xi-file-download-o',
+                'xi-file-image', 'xi-file-image-o', 'xi-file-music', 'xi-file-music-o',
+                'xi-file-o', 'xi-file-remove', 'xi-file-remove-o', 'xi-file-text',
+                'xi-file-text-o', 'xi-file-upload', 'xi-file-upload-o', 'xi-file-video',
+                'xi-file-video-o', 'xi-file-zip', 'xi-file-zip-o', 'xi-folder',
+                'xi-folder-add', 'xi-folder-add-o', 'xi-folder-check', 'xi-folder-check-o',
+                'xi-folder-download', 'xi-folder-download-o', 'xi-folder-o',
+                'xi-folder-open', 'xi-folder-remove', 'xi-folder-remove-o',
+                'xi-folder-shared', 'xi-folder-upload', 'xi-folder-upload-o',
+                'xi-folder-zip', 'xi-folder-zip-o', 'xi-upload'
+            ],
+            '개발 및 기술': [
+                'xi-accessibility', 'xi-antenna', 'xi-barcode', 'xi-branch',
+                'xi-bug', 'xi-central-router', 'xi-central-signal', 'xi-cookie',
+                'xi-css3', 'xi-fingerprint', 'xi-fork', 'xi-globus', 'xi-html5',
+                'xi-javascript', 'xi-csharp', 'xi-laravel', 'xi-log', 'xi-merge',
+                'xi-milestone', 'xi-network-company', 'xi-network-folder',
+                'xi-network-home', 'xi-network-public', 'xi-php', 'xi-pull-requests',
+                'xi-puzzle', 'xi-python', 'xi-qr-code', 'xi-rss', 'xi-rss-square',
+                'xi-server', 'xi-server-network', 'xi-sitemap', 'xi-sitemap-o',
+                'xi-browser', 'xi-browser-text', 'xi-spinner-1', 'xi-spinner-2',
+                'xi-spinner-3', 'xi-spinner-4', 'xi-spinner-5'
+            ],
+            '날씨 및 자연': [
+                'xi-brightness-1', 'xi-brightness-2', 'xi-brightness-3', 'xi-brightness-4',
+                'xi-cloudy', 'xi-crescent', 'xi-fog', 'xi-foggy', 'xi-lightning',
+                'xi-night', 'xi-partly-cloudy', 'xi-pouring', 'xi-snow-crystal',
+                'xi-snowy', 'xi-sun', 'xi-sun-o', 'xi-sunset', 'xi-sunset-down',
+                'xi-sunset-up', 'xi-thermometer', 'xi-tint', 'xi-tint-o',
+                'xi-tornado', 'xi-umbrella', 'xi-umbrella-o', 'xi-wind',
+                'xi-windy', 'xi-windy-variant'
+            ],
+            '라이선스 및 저작권': [
+                'xi-cc-by', 'xi-cc-cc', 'xi-cc-nc', 'xi-cc-nc-eu', 'xi-cc-nc-jp',
+                'xi-cc-nd', 'xi-cc-pd', 'xi-cc-remix', 'xi-cc-sa', 'xi-cc-sampling',
+                'xi-cc-share', 'xi-cc-zero', 'xi-copyleft', 'xi-copyright',
+                'xi-registered', 'xi-trademark'
+            ],
+            '소셜 미디어 및 브랜드': [
+                'xi-500px', 'xi-adobe', 'xi-amazon', 'xi-android', 'xi-apple',
+                'xi-beats', 'xi-behance', 'xi-bing', 'xi-bitbucket', 'xi-blackberry',
+                'xi-blogger', 'xi-silverstripe', 'xi-cc-amex', 'xi-cc-discover',
+                'xi-cc-mastercard', 'xi-cc-paypal', 'xi-cc-stripe', 'xi-cc-visa',
+                'xi-chak', 'xi-chrome', 'xi-codepen', 'xi-connectdevelop',
+                'xi-d2', 'xi-dashcube', 'xi-delicious', 'xi-deviantart',
+                'xi-digg', 'xi-disqus', 'xi-dribbble', 'xi-dropbox', 'xi-drupal',
+                'xi-edge', 'xi-evernote', 'xi-facebook', 'xi-facebook-messenger',
+                'xi-facebook-official', 'xi-feedly', 'xi-firefox', 'xi-flickr',
+                'xi-flickr-square', 'xi-foursquare', 'xi-ghost', 'xi-git',
+                'xi-git-symbol', 'xi-github', 'xi-github-alt', 'xi-gmail',
+                'xi-google', 'xi-google-play', 'xi-google-plus', 'xi-google-wallet',
+                'xi-gratipay', 'xi-hangouts', 'xi-hunie', 'xi-illustrator',
+                'xi-illustrator-circle', 'xi-instagram', 'xi-internet-explorer',
+                'xi-jira', 'xi-joomla', 'xi-jsfiddle', 'xi-kakao', 'xi-kakaostory',
+                'xi-kickstarter', 'xi-line', 'xi-line-messenger', 'xi-linkedin',
+                'xi-linkedin-square', 'xi-linux', 'xi-magento', 'xi-maxcdn',
+                'xi-medium', 'xi-naver', 'xi-naver-square', 'xi-office',
+                'xi-opencart', 'xi-opera', 'xi-oscommerce', 'xi-path',
+                'xi-paypal', 'xi-photoshop', 'xi-photoshop-circle',
+                'xi-pinterest', 'xi-pinterest-p', 'xi-pocket', 'xi-qq',
+                'xi-quicktime', 'xi-reddit', 'xi-renren', 'xi-safari',
+                'xi-sellsy', 'xi-simplybuilt', 'xi-sketch', 'xi-skype',
+                'xi-slack', 'xi-slideshare', 'xi-soundcloud', 'xi-spotify',
+                'xi-stack-exchange', 'xi-stack-overflow', 'xi-steam',
+                'xi-steam-square', 'xi-stumbleupon', 'xi-stumbleupon-circle',
+                'xi-telegram', 'xi-tencent-weibo', 'xi-trello', 'xi-tumblr',
+                'xi-tumblr-square', 'xi-twich', 'xi-twitter', 'xi-ubercart',
+                'xi-ubuntu', 'xi-ubuntu-circle', 'xi-vimeo', 'xi-vine',
+                'xi-vk', 'xi-wechat', 'xi-whatsapp', 'xi-wikipedia',
+                'xi-windows', 'xi-wordpress', 'xi-wordpress-official',
+                'xi-xe', 'xi-xing', 'xi-xpressengine', 'xi-yahoo',
+                'xi-yelp', 'xi-youtube', 'xi-youtube-play'
+            ]
+        };
+
+        // 아이콘 그리드 생성
+        function createIconGrid() {
+            const grid = document.getElementById('iconGrid');
+            let totalCount = 0;
+
+            for (const [category, icons] of Object.entries(iconCategories)) {
+                // 카테고리 제목 추가
+                const categoryTitle = document.createElement('div');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = category;
+                grid.appendChild(categoryTitle);
+
+                // 아이콘들 추가
+                icons.forEach(iconClass => {
+                    const iconItem = document.createElement('div');
+                    iconItem.className = 'icon-item';
+                    iconItem.setAttribute('data-icon', iconClass);
+
+                    const iconDisplay = document.createElement('i');
+                    iconDisplay.className = `icon-display ${iconClass}`;
+
+                    const iconClassText = document.createElement('div');
+                    iconClassText.className = 'icon-class';
+                    iconClassText.textContent = iconClass;
+
+                    iconItem.appendChild(iconDisplay);
+                    iconItem.appendChild(iconClassText);
+                    grid.appendChild(iconItem);
+                    totalCount++;
+                });
+            }
+
+            document.getElementById('totalCount').textContent = `총 ${totalCount}개`;
+            document.getElementById('visibleCount').textContent = `표시: ${totalCount}개`;
+        }
+
+        // 검색 기능
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const iconItems = document.querySelectorAll('.icon-item');
+                let visibleCount = 0;
+
+                iconItems.forEach(item => {
+                    const iconClass = item.getAttribute('data-icon');
+                    if (iconClass.toLowerCase().includes(searchTerm)) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                document.getElementById('visibleCount').textContent = `표시: ${visibleCount}개`;
+            });
+        }
+
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            createIconGrid();
+            setupSearch();
+        });
+    </script>
+</body>
+</html> 

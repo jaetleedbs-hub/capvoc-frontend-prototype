@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "message": "고객별카드현황조회가 완료되었습니다.",
+  "data": [
+    {
+      "alAcctNo": "12345678901234567890",
+      "alAcctStt": "정상",
+      "alLnkBnkNm": "국민은행",
+      "alLnkAcctNo": "123456789012",
+      "alCardTypeNm": "KB국민 체크카드",
+      "alCardNo": "1234-5678-9012-3456",
+      "alCardIssDt": "20220315",
+      "alCardExpireDt": "20270314",
+      "alCardStt": "정상",
+      "alCardRetDt": "",
+      "alAcctRm": "8450850",
+      "alPwErrCnt": "0"
+    },
+    {
+      "alAcctNo": "98765432109876543210",
+      "alAcctStt": "정상",
+      "alLnkBnkNm": "신한은행",
+      "alLnkAcctNo": "987654321098",
+      "alCardTypeNm": "신한 체크카드",
+      "alCardNo": "9876-5432-1098-7654",
+      "alCardIssDt": "20230120",
+      "alCardExpireDt": "20280119",
+      "alCardStt": "정상",
+      "alCardRetDt": "",
+      "alAcctRm": "2450000",
+      "alPwErrCnt": "0"
+    },
+    {
+      "alAcctNo": "11223344556677889900",
+      "alAcctStt": "정지",
+      "alLnkBnkNm": "우리은행",
+      "alLnkAcctNo": "112233445566",
+      "alCardTypeNm": "우리 체크카드",
+      "alCardNo": "1122-3344-5566-7788",
+      "alCardIssDt": "20210810",
+      "alCardExpireDt": "20260809",
+      "alCardStt": "분실신고",
+      "alCardRetDt": "20241201",
+      "alAcctRm": "0",
+      "alPwErrCnt": "3"
+    },
+    {
+      "alAcctNo": "55667788990011223344",
+      "alAcctStt": "정상",
+      "alLnkBnkNm": "하나은행",
+      "alLnkAcctNo": "556677889900",
+      "alCardTypeNm": "하나 원큐 체크카드",
+      "alCardNo": "5566-7788-9900-1122",
+      "alCardIssDt": "20240505",
+      "alCardExpireDt": "20290504",
+      "alCardStt": "정상",
+      "alCardRetDt": "",
+      "alAcctRm": "1250000",
+      "alPwErrCnt": "1"
+    }
+  ],
+  "totalCount": 4,
+  "pageInfo": {
+    "currentPage": 1,
+    "pageSize": 10,
+    "totalPages": 1
+  },
+  "requestUrl": "/api/cns/cns0120/r01",
+  "requestData": {
+    "alJumin": "8503151234567"
+  },
+  "timestamp": "2025-01-14T10:30:00.000Z"
+}

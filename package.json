@@ -1,0 +1,133 @@
+{
+  "name": "scrmreact",
+  "version": "0.1.0",
+  "private": true,
+  "//resolutions": [
+    "[B4] 전이 의존성의 <패치 수준> 보안 고정. 직접 의존성이 아니라 여기서만 올릴 수 있다.",
+    "메이저 점프가 필요한 것(flatted 2→3, postcss 7→8, tmp 0.0→0.2)은 <넣지 않았다> —",
+    "전부 빌드·린트 도구 계열이라 번들에 실리지 않는데, 메이저를 강제하면 빌드가",
+    "조용히 깨질 수 있다. 얻는 것보다 잃는 것이 크다. 근거: security-remediation-plan.md §10.96"
+  ],
+  "resolutions": {
+    "brace-expansion": "^1.1.16",
+    "js-yaml": "^3.15.1",
+    "nanoid": "^3.3.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "patch-package": "^8.0.1",
+    "redux-devtools": "^3.7.0",
+    "sass": "^1.32.0",
+    "vite": "^6.3.0"
+  },
+  "dependencies": {
+    "@babel/core": "7.9.0",
+    "@babel/plugin-transform-react-jsx": "^7.25.0",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
+    "@wojtekmaj/react-daterange-picker": "^3.0.0",
+    "ag-grid-community": "^32.3.2",
+    "ag-grid-react": "^32.3.2",
+    "axios": "^0.33.0",
+    "camelcase": "^5.3.1",
+    "dompurify": "^3.3.1",
+    "dotenv": "8.2.0",
+    "dotenv-expand": "5.1.0",
+    "eslint": "^6.6.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "4.6.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "file-saver": "^2.0.2",
+    "flatpickr": "^4.6.6",
+    "fs-extra": "^8.1.0",
+    "howler": "^2.2.4",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "postcss-flexbugs-fixes": "4.1.0",
+    "postcss-normalize": "8.0.1",
+    "postcss-preset-env": "6.7.0",
+    "postcss-safe-parser": "4.0.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-app-polyfill": "^1.0.6",
+    "react-date-picker": "^12.0.2",
+    "react-dates": "^21.8.0",
+    "react-daum-postcode": "^3.2.0",
+    "react-dom": "^18.3.1",
+    "react-draggable": "^4.5.0",
+    "react-dropzone": "^14.3.8",
+    "react-dropzone-uploader": "^2.11.0",
+    "react-flatpickr": "^3.10.5",
+    "react-howler": "^5.2.0",
+    "react-images-uploading": "^2.2.2",
+    "react-minimal-pie-chart": "^8.2.0",
+    "react-modeless": "^0.1.0",
+    "react-quill-new": "^3.8.3",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.15.0",
+    "react-slick": "^0.27.8",
+    "react-sortable-tree": "^2.8.0",
+    "react-sweet-progress": "^1.1.2",
+    "react-time-picker": "^8.0.3",
+    "recharts": "^2.15.0",
+    "redux": "^5.0.1",
+    "redux-actions": "^2.6.5",
+    "resolve": "1.15.0",
+    "save": "^2.4.0",
+    "semver": "6.3.1",
+    "slick-carousel": "^1.8.1",
+    "style-it": "^2.1.4",
+    "styled-components": "^6.1.0",
+    "ts-pnp": "1.1.6",
+    "waveform-react": "^0.2.3",
+    "whatwg-fetch": "^3.4.1",
+    "x-axios-progress-bar": "^1.2.2"
+  },
+  "scripts": {
+    "postinstall": "patch-package",
+    "dev": "vite",
+    "preview": "vite preview",
+    "start": "vite",
+    "build": "vite build",
+    "build:company-a": "cross-env VITE_COMPANY_CODE=company-a vite build",
+    "build:company-b": "cross-env VITE_COMPANY_CODE=company-b vite build",
+    "build:company-c": "cross-env VITE_COMPANY_CODE=company-c vite build",
+    "icons:build": "node scripts/build-icons.mjs"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      ">0.2%",
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-react-jsx",
+        {
+          "runtime": "automatic"
+        }
+      ]
+    ]
+  }
+}

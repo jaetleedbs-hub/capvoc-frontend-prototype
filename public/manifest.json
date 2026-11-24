@@ -1,0 +1,13 @@
+{
+  "short_name": "Nexsis 포탈",
+  "name": "Nexsis 포탈 — 업무 시스템 공통 기반",
+  "icons": [
+    { "src": "favicon.ico",  "sizes": "16x16 24x24 32x32 48x48 64x64", "type": "image/x-icon" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#007acc",
+  "background_color": "#ffffff"
+}

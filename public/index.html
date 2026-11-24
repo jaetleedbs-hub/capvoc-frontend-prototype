@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MICO AI NEXSIS</title>
+	</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+	<meta name="theme-color" content="#000000" />
+	<meta name="description" content="Web site created using create-react-app"/>
+	<!-- 폰트 프리로드로 로딩 속도 개선 -->
+	<link rel="preload" href="%PUBLIC_URL%/assets/fonts/NotoSansKR-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+	<link rel="preload" href="%PUBLIC_URL%/assets/fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+	<link rel="preload" href="%PUBLIC_URL%/assets/fontawesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+	<link href="%PUBLIC_URL%/assets/fonts/xeicon.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+	
+	<!-- 폰트 CSS 파일 로드 -->
+	<link rel="stylesheet" href="%PUBLIC_URL%/assets/fonts/noto-sans-kr.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/assets/fonts/xeicon.css">
+	
+	<!-- 오프라인 환경을 위해 Google Fonts 제거 -->
+	
+	<!-- Critical CSS 인라인화 -->
+	<style>
+		/* 초기 렌더링에 필요한 최소 CSS - Google Fonts 적용 */
+		html, body { 
+			font-family: 'Noto Sans KR', 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "Helvetica Neue", Arial, sans-serif;
+			font-size: 14px;
+			line-height: 1.5;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			text-rendering: optimizeLegibility;
+			overflow: hidden; 
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		#root { height: 100%; }
+		.loading { 
+			display: flex; 
+			justify-content: center; 
+			align-items: center; 
+			height: 100vh; 
+			font-size: 16px; 
+			color: #666; 
+		}
+		
+		/* 오프라인 모드 최적화 */
+		.offline-mode {
+			--font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "맑은 고딕", Arial, sans-serif;
+		}
+		
+		.offline-mode * {
+			font-family: var(--font-family-primary) !important;
+		}
+		
+		/* Google Fonts 로딩 상태 */
+		.google-fonts-loading {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+		}
+		
+		.google-fonts-loaded {
+			font-family: 'Noto Sans KR', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+		}
+	</style>
+	
+	<!-- 비중요 CSS는 비동기 로딩 -->
+	<link rel="preload" href="%PUBLIC_URL%/assets/fontawesome/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="%PUBLIC_URL%/assets/fontawesome/all.min.css"></noscript>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Smart CC</title>
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+	<script type="text/javascript"></script>
+	<script type="text/javascript">
+		(function (global) {
+			if(typeof (global) === "undefined") {
+				throw new Error("window is undefined");
+			}
+
+			var _hash = "!";
+			var noBackPlease = function () {
+				global.location.href += "#";
+
+				// making sure we have the fruit available for juice....
+				// 50 milliseconds for just once do not cost much (^__^)
+				global.setTimeout(function () {
+					global.location.href += "!";
+				}, 50);
+			};
+
+			// Earlier we had setInerval here....
+			global.onhashchange = function () {
+				if (global.location.hash !== _hash) {
+					global.location.hash = _hash;
+				}
+			};
+
+			global.onload = function () {
+				
+				noBackPlease();
+
+				// disables backspace on page except on input fields and textarea..
+				document.body.onkeydown = function (e) {
+					var elm = e.target.nodeName.toLowerCase();
+					if (e.which === 8 && (elm !== 'input' && elm  !== 'textarea')) {
+						e.preventDefault();
+					}
+					// stopping event bubbling up the DOM tree..
+					e.stopPropagation();
+				};
+				
+			};
+
+		})(window);
+	</script>
+
+</head>
+<body>
+	<script>
+		document.body.onkeydown = function(e) {
+			if (e.keyCode == 116) return false;
+			if (e.keyCode != 13) {
+				if (document.getElementById('dialog') != null && document.getElementById('dialog') != undefined) {
+					return false;
+				} else if (document.getElementById('_loaddiv') != null && document.getElementById('_loaddiv') != undefined) {
+					if (document.getElementById('_loaddiv').hasChildNodes()) {
+						return false;
+					}
+				}
+			}
+		};
+		document.body.oncontextmenu = function(e) {
+			return false;
+		};
+		
+		// 성능 최적화: 리소스 힌트 추가
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', function() {
+				// 서비스 워커는 필요시 추가
+			});
+		}
+		
+		// 오프라인 환경 감지 및 폰트 최적화
+		function checkOnlineStatus() {
+			if (!navigator.onLine) {
+				console.log('오프라인 모드: 시스템 폰트 사용');
+				// 오프라인일 때 추가 최적화 로직
+				document.documentElement.classList.add('offline-mode');
+			}
+		}
+		
+		// 네트워크 상태 변경 감지
+		window.addEventListener('online', checkOnlineStatus);
+		window.addEventListener('offline', checkOnlineStatus);
+		checkOnlineStatus(); // 초기 체크
+		
+		// Google Fonts 로딩 감지 및 관리
+		function initializeFonts() {
+			console.log('🎨 Google Fonts 초기화 시작...');
+			
+			// 초기 상태: 로딩 중
+			document.documentElement.classList.add('google-fonts-loading');
+			
+			if (document.fonts) {
+				// Google Fonts 로딩 완료 감지
+				document.fonts.ready.then(function() {
+					console.log('📋 폰트 로딩 상태 확인 중...');
+					
+					// 각 폰트 로딩 상태 확인
+					const notoRegular = document.fonts.check('400 16px "Noto Sans KR"');
+					const notoMedium = document.fonts.check('500 16px "Noto Sans KR"');
+					const notoBold = document.fonts.check('700 16px "Noto Sans KR"');
+					const robotoRegular = document.fonts.check('400 16px "Roboto"');
+					
+					console.log('폰트 로딩 상태:');
+					console.log('- Noto Sans KR Regular:', notoRegular ? '✅' : '❌');
+					console.log('- Noto Sans KR Medium:', notoMedium ? '✅' : '❌');
+					console.log('- Noto Sans KR Bold:', notoBold ? '✅' : '❌');
+					console.log('- Roboto Regular:', robotoRegular ? '✅' : '❌');
+					
+					if (notoRegular || robotoRegular) {
+						console.log('🎉 Google Fonts 로딩 완료!');
+						document.documentElement.classList.remove('google-fonts-loading');
+						document.documentElement.classList.add('google-fonts-loaded');
+						
+						// 현재 적용된 폰트 확인
+						const currentFont = getComputedStyle(document.body).fontFamily;
+						console.log('현재 적용된 폰트:', currentFont);
+					} else {
+						console.log('⚠️ Google Fonts 로딩 실패 - 시스템 폰트 사용');
+						document.documentElement.classList.remove('google-fonts-loading');
+					}
+				});
+				
+				// 타임아웃 설정 (5초 후 시스템 폰트로 폴백)
+				setTimeout(function() {
+					if (document.documentElement.classList.contains('google-fonts-loading')) {
+						console.log('⏰ Google Fonts 로딩 타임아웃 - 시스템 폰트로 폴백');
+						document.documentElement.classList.remove('google-fonts-loading');
+					}
+				}, 5000);
+			} else {
+				console.log('❌ document.fonts API 미지원 - 시스템 폰트 사용');
+			}
+		}
+		
+		// 폰트 초기화 실행
+		initializeFonts();
+	</script>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<div id="root">
+		<!-- 초기 로딩 인디케이터 -->
+		<div class="loading">
+			<div>Smart CC 로딩 중...</div>
+		</div>
+	</div>
+	<div id="pop"></div>
+</body>
+</html>

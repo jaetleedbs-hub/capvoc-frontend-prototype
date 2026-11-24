@@ -1,0 +1,58 @@
+.scrm-header-status-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 15px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin: 0 10px;
+}
+
+.scrm-header-status-section .status-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.scrm-header-status-section .status-item::before {
+    content: '\e989';
+	display: block;
+	line-height: 20px;
+	font-family: 'xeicon' !important;
+    font-size:5px;
+    color:#777777;
+}
+.scrm-header-status-section .status-item em {
+    font-style: normal;
+}
+.scrm-header-status-section .status-item span {
+    font-weight: 500;
+    color:#1C7ED6;
+    font-size: 16px;
+    padding-bottom: 2px;
+
+}
+
+
+/* 다크 테마 대응 */
+.scrm-header.dark .scrm-header-status-section {
+    background: rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+}
+
+
+/* 애니메이션 */
+.scrm-header-status-section {
+    transition: background-color 0.2s ease;
+}
+
+.scrm-header-status-section .status-item {
+    transition: opacity 0.2s ease;
+}
+
+.scrm-header-status-section:hover .status-item {
+    opacity: 1;
+} 

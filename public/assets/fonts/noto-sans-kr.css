@@ -1,0 +1,76 @@
+/*!
+ * Google Fonts - Local Files
+ * 오프라인 환경을 위한 로컬 Google Fonts
+ * 
+ * 다운로드 방법:
+ * 1. https://fonts.google.com/noto/specimen/Noto+Sans+KR 에서 다운로드
+ * 2. https://fonts.google.com/specimen/Roboto 에서 다운로드
+ * 3. 이 디렉토리에 폰트 파일들을 배치
+ * 4. component.css에서 이 파일을 import
+ */
+
+/* Noto Sans KR Regular (400) */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./NotoSansKR-Regular.woff2') format('woff2'),
+         url('./NotoSansKR-Regular.woff') format('woff'),
+         url('./NotoSansKR-Regular.ttf') format('truetype');
+}
+
+/* Noto Sans KR Medium (500) */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('./NotoSansKR-Medium.woff2') format('woff2'),
+         url('./NotoSansKR-Medium.woff') format('woff'),
+         url('./NotoSansKR-Medium.ttf') format('truetype');
+}
+
+/* Noto Sans KR Bold (700) */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('./NotoSansKR-Bold.woff2') format('woff2'),
+         url('./NotoSansKR-Bold.woff') format('woff'),
+         url('./NotoSansKR-Bold.ttf') format('truetype');
+}
+
+/* Roboto Regular (400) - 영문용 */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./Roboto-Regular.woff2') format('woff2'),
+         url('./Roboto-Regular.woff') format('woff'),
+         url('./Roboto-Regular.ttf') format('truetype');
+}
+
+/* Roboto Medium (500) - 영문용 */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('./Roboto-Medium.woff2') format('woff2'),
+         url('./Roboto-Medium.woff') format('woff'),
+         url('./Roboto-Medium.ttf') format('truetype');
+}
+
+/* Roboto Bold (700) - 영문용 */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('./Roboto-Bold.woff2') format('woff2'),
+         url('./Roboto-Bold.woff') format('woff'),
+         url('./Roboto-Bold.ttf') format('truetype');
+}

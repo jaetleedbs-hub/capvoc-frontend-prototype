@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "message": "고객ID - 웹 ID 정보 조회가 완료되었습니다.",
+  "data": [
+    {
+      "clientNo": "CUST002",
+      "memberId": "MEMBER001",
+      "memberStateName": "A"
+    },
+    {
+      "clientNo": "CUST003",
+      "memberId": "MEMBER002",
+      "memberStateName": "B"
+    },
+    {
+      "clientNo": "CUST004",
+      "memberId": "MEMBER003",
+      "memberStateName": "C"
+    },
+    {
+      "clientNo": "CUST001",
+      "memberId": "MEMBER004",
+      "memberStateName": "A"
+    },
+    {
+      "clientNo": "CUST005",
+      "memberId": "MEMBER005",
+      "memberStateName": "B"
+    }
+  ]
+} 

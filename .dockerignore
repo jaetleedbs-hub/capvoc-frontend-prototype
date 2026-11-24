@@ -1,0 +1,17 @@
+# Git
+.git
+
+# Dependencies (will be installed in Docker)
+node_modules
+
+# Build artifacts
+build
+
+# Environment files  
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

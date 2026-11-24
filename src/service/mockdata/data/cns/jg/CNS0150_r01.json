@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "message": "SMS인증목록조회가 완료되었습니다.",
+  "data": [
+    {
+      "alRgstDt": "20241215",
+      "alRgstId": "admin001",
+      "alRgstTeam": "고객지원팀",
+      "alProcSttGb": "신청",
+      "alRmrk": "고객 본인 요청으로 SMS 인증 제외 신청"
+    },
+    {
+      "alRgstDt": "20241201",
+      "alRgstId": "admin002",
+      "alRgstTeam": "시스템관리팀",
+      "alProcSttGb": "승인",
+      "alRmrk": "휴대폰 번호 변경으로 인한 임시 제외 승인"
+    },
+    {
+      "alRgstDt": "20241128",
+      "alRgstId": "admin003",
+      "alRgstTeam": "고객지원팀",
+      "alProcSttGb": "해지",
+      "alRmrk": "고객 요청으로 SMS 인증 제외 해지"
+    },
+    {
+      "alRgstDt": "20241110",
+      "alRgstId": "admin004",
+      "alRgstTeam": "영업지원팀",
+      "alProcSttGb": "신청",
+      "alRmrk": "해외 거주로 인한 SMS 수신 불가"
+    },
+    {
+      "alRgstDt": "20241105",
+      "alRgstId": "admin005",
+      "alRgstTeam": "시스템관리팀",
+      "alProcSttGb": "반려",
+      "alRmrk": "서류 미비로 인한 신청 반려"
+    }
+  ],
+  "totalCount": 5,
+  "pageInfo": {
+    "currentPage": 1,
+    "pageSize": 10,
+    "totalPages": 1
+  },
+  "requestUrl": "/api/cns/CNS0150/r01",
+  "requestData": {
+    "alJumin": "8503151234567",
+    "alStndDtFr": "20241101",
+    "alStndDtTo": "20241231",
+    "alSrchProcGb": "",
+    "alSrchProcSttGb": "",
+    "alSrchRmrk": ""
+  },
+  "timestamp": "2025-01-14T10:30:00.000Z"
+}

@@ -1,0 +1,776 @@
+/* 
+ * NEXSIS 2025 Ultimate SaaS Design System
+ * Focus: High-End Enterprise UX, Clean Surfaces, & Data Density
+ */
+
+:root {
+  /* 2025 SaaS Color Palette */
+  /* --background: #e5e5e5; */
+  --background: rgb(60, 71, 96);
+
+  --surface: #FFFFFF;
+  --secondary-surface: rgb(240, 242, 245);
+  
+  --primary: #2563EB;       /* Brand Blue */
+  --primary-hover: #1D4ED8;
+  --primary-soft: #EFF6FF;
+  
+  --text-main: #0F172A;     /* Slate 900 */
+  --text-sub: #475569;      /* Slate 600 */
+  --text-muted: #94A3B8;    /* Slate 400 */
+  
+  --palette-text-secondary: rgb(68, 81, 100);; /* 추가: 그리드 헤더 등에 사용 */
+  
+  --border: rgb(217, 221, 233);
+  --border-focus: #CBD5E1;
+  
+  /* Input Field Background (독립적인 색) */
+  --input-background: #FFFFFF;  /* 기본값: #fff */
+  --input-background-focus: #FFFFFF;  /* 포커스 시 배경색 */
+  
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  
+  --radius-md: 10px;
+  --radius-sm: 4px;
+
+  --side-text-color:#fff;
+  --side-border: val(--background);
+  --form-background: #f7f7f9;
+}
+
+/* 1. Global Layout Structure */
+body {
+  font-family: 'Pretendard', sans-serif !important;
+  background-color: var(--background) !important;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 텍스트 요소에만 Pretendard 적용 (아이콘 폰트 제외) */
+p, span, div, h1, h2, h3, h4, h5, h6, label, td, th, li {
+  font-family: 'Pretendard', sans-serif !important;
+}
+
+/* 링크는 텍스트만 Pretendard, 아이콘은 원래 폰트 유지 */
+a {
+  font-family: 'Pretendard', sans-serif !important;
+}
+
+/* Font Awesome 아이콘 폰트 명시적 설정 */
+[class*="fa-"], .fa, .fas, .far, .fal, .fab,
+i[class*="fa"], i.fa, i.fas, i.far, i.fal, i.fab,
+span[class*="fa"], span.fa, span.fas, span.far, span.fal, span.fab,
+.menu-item [class*="fa-"], .menu-item .fa, .menu-item .fas,
+.left-menu [class*="fa-"], .left-menu .fa, .left-menu .fas,
+.gnb-item [class*="fa-"], .gnb-item .fa, .gnb-item .fas,
+.scrm-btn [class*="fa-"], .scrm-btn .fa, .scrm-btn .fas,
+button [class*="fa-"], button .fa, button .fas,
+a [class*="fa-"], a .fa, a .fas,
+.scrm-head-panel [class*="fa-"], .scrm-head-panel .fa, .scrm-head-panel .fas {
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Pro" !important;
+  font-weight: 900 !important; /* Solid 아이콘용 (fas) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.far, [class*="far-"], i.far, span.far {
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Pro" !important;
+  font-weight: 400 !important; /* Regular 아이콘용 */
+}
+
+.fab, [class*="fab-"], i.fab, span.fab {
+  font-family: "Font Awesome 5 Brands" !important;
+  font-weight: 400 !important; /* Brands 아이콘용 */
+}
+
+/* XEIcon 아이콘 폰트 */
+[class*="xi-"], .xi,
+i[class*="xi"], i.xi,
+span[class*="xi"], span.xi,
+.menu-item [class*="xi-"], .menu-item .xi,
+.left-menu [class*="xi-"], .left-menu .xi,
+.gnb-item [class*="xi-"], .gnb-item .xi,
+.scrm-btn [class*="xi-"], .scrm-btn .xi,
+button [class*="xi-"], button .xi,
+a [class*="xi-"], a .xi,
+.scrm-head-panel [class*="xi-"], .scrm-head-panel .xi {
+  font-family: "xeicon" !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.scrm-app-panel {
+  background-color: var(--background) !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh !important;
+}
+
+/* 2. Top Navigation Bar (Header) */
+.scrm-head-panel {
+  font-family: 'Pretendard', sans-serif !important;
+  background-color: var(--surface) !important;
+  height: 56px !important;
+  border-bottom: 1px solid var(--border) !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 20px !important;
+  z-index: 100 !important;
+}
+
+/* 헤더 내부 아이콘은 위에서 정의한 Font Awesome/XEIcon 스타일 적용 */
+
+/* 3. Modern Workspace & Sidebar */
+.scrm-middle-panel {
+  flex: 1 !important;
+  display: flex !important;
+  padding: 12px !important;
+  gap: 12px !important;
+  overflow: hidden !important;
+}
+
+.scrm-middle-panel.side-minimized {
+  gap: 0 !important;
+}
+
+.scrm-middle-panel.side-expanded {
+  gap: 12px !important;
+}
+
+.scrm-main-panel {
+  background-color: var(--surface) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  border: 1px solid var(--border) !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+/* 화면 이름 영역 스타일 */
+.scrm-main-view-title-container {
+  border-bottom: none !important; /* 하단 선 숨김 */
+  padding: 16px 24px 0 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  /* background-color: var(--form-background) !important; */
+}
+
+.scrm-main-view-area .scrm-main-view-area-content { 
+	/* background-color: var(--form-background) !important; */
+  border-top: none !important;
+}
+
+.scrm-full-panel {
+  background-color: transparent !important;
+}
+
+.scrm-main-view-area-title {
+  font-size: 1.6rem !important; /* 20px - 폰트 크기 증가 */
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+  font-family: 'Pretendard', sans-serif !important;
+}
+
+.scrm-side-panel {
+  border: 1px solid var(--side-border) !important;
+  background-color: #fff !important;
+  /* border: none !important; */
+  width: 350px !important;
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+/* 사이드바 펼쳐진 상태 스타일 */
+.scrm-side-panel.expanded {
+  /* background-color: var(--secondary-surface) !important; */
+  background-color: #fff !important;
+  border: 1px solid var(--side-border) !important;
+  border-right: none !important; /* 우측은 화면 끝이므로 테두리 제거 */
+  border-radius: var(--radius-md) 0 0 var(--radius-md) !important; /* 좌측 상/하단 라운드 */
+  /* box-shadow: -4px 0 12px rgba(0, 0, 0, 0.08) !important; */
+  overflow: hidden !important;
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+.scrm-side-panel.minimized {
+  background-color: transparent !important;
+  /* border: none !important;  */
+  border: 1px solid var(--side-border) !important;
+  /* box-shadow: none !important; */
+  width: 70px !important;
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+.left-menu {
+  background-color: var(--background) !important;
+}
+
+.menu-item {
+  color: var(--side-text-color) !important;
+}
+
+/* 4. 메뉴 트리 및 우측 패널 모던화 */
+.menu-tree-container, .explorer-menu, .notifications, .memo-container {
+  background-color: transparent !important; /* 흰색 배경 제거 */
+  border: none !important;
+  font-family: 'Pretendard', sans-serif !important;
+  height: 100% !important;
+}
+
+/* GNB 컨테이너 스타일 */
+.gnb-container {
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+.gnb-container.expanded {
+  background-color: transparent !important; /* 부모 배경색 사용 */
+  width: 100% !important;
+  height: 100% !important;
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+.gnb-content {
+  background-color: var(--surface) !important;
+  border-radius: var(--radius-md) !important;
+  /* border: 1px solid var(--border) !important; */
+  height: 100% !important;
+  margin: 5px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+.gnb-content.active {
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+/* 사이드바 컨테이너 애니메이션 제거 */
+.side-container {
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+.side-container.minimized {
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+/* MainPanel width transition 제거 */
+.scrm-main-panel.full-width,
+.scrm-main-panel.with-sidebar {
+  transition: none !important; /* 애니메이션 제거 */
+}
+
+/* 우측 패널 헤더 스타일 통일 (SaaS 스타일) */
+.menu-tree-header, .explorer-header, .notifications-header, .memo-header, .favorite-header {
+  background-color: var(--surface) !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding: 12px 20px !important;
+  height: 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+.menu-tree-header h3, .explorer-header h3, .notifications-header h3, .memo-header h3, .favorite-header h3 {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+  margin: 0 !important;
+}
+
+/* 메뉴 트리 아이콘 개선 (FontAwesome Chevron 적용) */
+.scrm-tree-button {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--text-muted) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-right: 6px !important;
+  cursor: pointer !important;
+}
+
+.scrm-tree-button::before {
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 400 !important; /* Regular style */
+  content: "\f0fe" !important; /* fa-plus-square */
+  font-size: 14px !important;
+  display: block !important;
+  color: var(--text-muted) !important;
+}
+
+/* 펼쳐진 상태 아이콘 변경 */
+.scrm-tree-div.expanded > .scrm-tree-node .scrm-tree-button::before {
+  content: "\f146" !important; /* fa-minus-square */
+}
+
+/* 하위 노드(화면) 아이콘 스타일 */
+.scrm-tree-leaf-icon::before {
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+  content: "\f105" !important; /* fa-angle-right (>) */
+  font-size: 13px !important;
+  color: #CBD5E1 !important;
+}
+
+.scrm-tree-title {
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: var(--text-sub) !important;
+  padding: 2px 0 !important;
+  transition: color 0.2s ease !important;
+  flex: 1 !important;
+}
+
+/* 트리 행 스타일링 */
+.scrm-tree-node {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  padding-right: 8px !important;
+  /* padding-left는 트리 깊이에 따라 인라인 스타일(depth * 20px)로 적용되도록 !important가 포함된 shorthand padding 대신 개별 속성 사용 */
+  border-bottom: none !important;
+  border-radius: var(--radius-sm) !important;
+  margin: 1px 0 !important;
+  background-color: transparent !important; /* 기본 배경 투명 */
+}
+
+/* 선택된 노드 스타일: 배경색 제거 및 글자색/굵기 강조 */
+.scrm-tree-node.selected,
+.scrm-tree-div > div[style*="background-color: rgb(227, 242, 253)"],
+.scrm-tree-div > div[style*="background-color: #e3f2fd"] {
+  background-color: transparent !important; /* 배경색 제거 */
+  border-left: none !important; /* 왼쪽 선 제거 */
+}
+
+.scrm-tree-node.selected .scrm-tree-title,
+.scrm-tree-div > div[style*="background-color: rgb(227, 242, 253)"] .scrm-tree-title,
+.scrm-tree-div > div[style*="background-color: #e3f2fd"] .scrm-tree-title {
+  color: var(--primary) !important; /* 글자색 변경 */
+  font-weight: bold !important; /* font-weight 강조 */
+}
+
+/* 메뉴 hover 시 해당 행(node)만 정확하게 강조 */
+.scrm-tree-node:hover .scrm-tree-title {
+  color: var(--primary) !important;
+}
+
+/* 우측 패널 본문 영역 (즐겨찾기, 알림 등) 스타일 개선 */
+.explorer-item, .notification-item, .memo-item {
+  padding: 12px 16px !important;
+  margin: 4px 12px !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.explorer-item:hover, .notification-item:hover, .memo-item:hover {
+  background-color: var(--secondary-surface) !important;
+}
+
+.notification-item {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* 우측 검색바 스타일 */
+.menu-tree-header input[type="text"] {
+  background-color: var(--input-background) !important; /* 독립적인 입력 필드 배경색 */
+  border: 1px solid var(--border) !important;
+  border-radius: 20px !important; /* 알약 형태 */
+  padding: 6px 16px !important;
+  font-size: 13px !important;
+  width: 100% !important;
+}
+
+.menu-tree-header input[type="text"]:focus {
+  border-color: var(--primary) !important;
+  background-color: var(--input-background-focus) !important; /* 포커스 시 배경색 */
+  box-shadow: 0 0 0 3px var(--primary-soft) !important;
+}
+
+/* 4. Search & Filter Area */
+.scrm-search-div {
+  background-color: var(--secondary-surface) !important;
+  padding: 16px 20px !important;
+  border-radius: var(--radius-md) !important;
+  margin-bottom: 0 !important;
+  /* border-bottom: 1px solid var(--border) !important; */
+  border: 1px solid var(--border) !important;
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+  font-size: 0.875rem !important; /* 14px */
+  font-weight: 500 !important;
+}
+
+.scrm-search-div * {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+}
+
+/* 검색 영역 내부 입력 필드와 레이블 */
+.scrm-search-div input,
+.scrm-search-div select,
+.scrm-search-div label,
+.scrm-search-div .scrm-label-div,
+.scrm-search-div .scrm-input-div {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+}
+
+/* 검색 영역 입력 필드 배경색 설정 */
+.scrm-search-div input[type='text'],
+.scrm-search-div input[type='number'],
+.scrm-search-div input[type='date'],
+.scrm-search-div input[type='datetime-local'],
+.scrm-search-div select,
+.scrm-search-div textarea,
+.scrm-search-div .scrm-input-div input {
+  background-color: var(--input-background) !important; /* 독립적인 입력 필드 배경색 */
+}
+
+.scrm-search-div input[type='text']:focus,
+.scrm-search-div input[type='number']:focus,
+.scrm-search-div input[type='date']:focus,
+.scrm-search-div input[type='datetime-local']:focus,
+.scrm-search-div select:focus,
+.scrm-search-div textarea:focus,
+.scrm-search-div .scrm-input-div input:focus {
+  background-color: var(--input-background-focus) !important; /* 포커스 시 배경색 */
+}
+
+/* 5. Enterprise Data Grid (ag-Grid) */
+.ag-theme-alpine {
+  --ag-header-background-color: rgb(245, 246, 247); /* 헤더 배경색 변경 */
+  --ag-header-foreground-color: var(--palette-text-secondary); /* 변경: 보조 텍스트 색상 적용 */
+  --ag-border-color: var(--border);
+  --ag-row-hover-color: var(--secondary-surface);
+  --ag-selected-row-background-color: var(--primary-soft);
+  --ag-font-size: 13px;
+  --ag-header-font-size: 12px; /* 헤더 폰트 크기 12px */
+  --ag-header-height: 32px; /* 헤더 높이 축소 */
+  --ag-grid-size: 4px;
+  --ag-font-family: 'Pretendard', sans-serif;
+}
+
+.ag-theme-alpine * {
+  font-family: 'Pretendard', sans-serif !important;
+}
+
+.ag-header {
+  font-weight: 600 !important;
+  font-size: 12px !important; /* 헤더 폰트 크기 12px */
+  height: 32px !important; /* 헤더 높이 축소 */
+  min-height: 32px !important; /* 최소 높이 설정 */
+  border-bottom: 1px solid var(--border) !important; /* 하단 border 1px로 변경 */
+  background-color: rgb(245, 246, 247) !important; /* 헤더 배경색 변경 */
+  color: var(--palette-text-secondary) !important; /* 헤더 글자색 강제 적용 */
+}
+
+/* 그리드 본문 셀 콘텐츠 수직 중앙 정렬 */
+.ag-theme-alpine .ag-cell {
+  display: flex !important;
+  align-items: center !important;
+  color: var(--text-main) !important;
+}
+
+/* Align flex content based on text-align property */
+.ag-theme-alpine .ag-cell[style*="text-align: right"],
+.ag-theme-alpine .ag-cell[style*="text-align:right"] {
+  justify-content: flex-end !important;
+}
+
+.ag-theme-alpine .ag-cell[style*="text-align: center"],
+.ag-theme-alpine .ag-cell[style*="text-align:center"] {
+  justify-content: center !important;
+}
+
+.ag-theme-alpine .ag-cell[style*="text-align: left"],
+.ag-theme-alpine .ag-cell[style*="text-align:left"] {
+  justify-content: flex-start !important;
+}
+
+/* 헤더 열 구분선을 배경색과 동일하게 처리하여 숨김 */
+.ag-theme-alpine .ag-header-cell {
+  font-size: 12px !important; /* 헤더 셀 폰트 크기 12px */
+  height: 32px !important; /* 헤더 셀 높이 축소 */
+  line-height: 32px !important; /* 텍스트 수직 정렬 */
+  border-right: 1px solid rgb(245, 246, 247) !important; /* 배경색과 동일한 색으로 구분선 숨김 */
+  background-color: rgb(245, 246, 247) !important;
+}
+
+.ag-theme-alpine .ag-header-cell::after,
+.ag-theme-alpine .ag-header-cell-resize::after {
+  display: none !important; /* 헤더 리사이즈 구분선 제거 */
+}
+
+/* 6. Detail Form Area (The most critical part in screenshot) */
+/* 회색 헤더 제거 및 현대적인 폼 디자인 */
+.scrm-modern-detail-table, .scrm-table {
+  width: 100% !important;
+  border: none !important;
+  border-collapse: collapse !important;
+}
+
+.scrm-table-th {
+  font-family: 'Pretendard', sans-serif !important;
+  background-color: transparent !important; /* 회색 배경 제거 */
+  color: var(--text-sub) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  border-bottom: none !important;
+  padding: 5px 12px !important;
+  text-align: right !important;
+}
+
+.scrm-table-td {
+  font-family: 'Pretendard', sans-serif !important;
+  padding: 5px 12px !important;
+  border-bottom: none !important;
+}
+
+/* 상세 영역의 padding을 조회조건 영역(20px)과 일치시킴 */
+.scrm-table-th:first-child, .scrm-table-td:first-child {
+  padding-left: 20px !important;
+}
+
+.scrm-table-th:last-child, .scrm-table-td:last-child {
+  padding-right: 20px !important;
+}
+
+/* Input Fields */
+input[type='text'],
+input[type='number'],
+input[type='date'],
+input[type='datetime-local'],
+input[type='time'],
+input[type='email'],
+input[type='password'],
+input[type='search'],
+select,
+.scrm-input-div input {
+  font-family: 'Pretendard', sans-serif !important;
+  height: 36px !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 0 12px !important;
+  background-color: var(--input-background) !important; /* 독립적인 입력 필드 배경색 (#fff) */
+  transition: all 0.2s ease !important;
+}
+
+textarea {
+  font-family: 'Pretendard', sans-serif !important;
+  height: auto !important;
+  min-height: 84px !important; /* 3줄 이상의 높이 확보 (약 28px * 3) */
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 8px 12px !important;
+  background-color: var(--input-background) !important;
+  transition: all 0.2s ease !important;
+  line-height: 1.5 !important;
+}
+
+input[type='text']:focus,
+input[type='number']:focus,
+input[type='date']:focus,
+input[type='datetime-local']:focus,
+input[type='time']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+select:focus,
+.scrm-input-div input:focus,
+textarea:focus {
+  border-color: var(--primary) !important;
+  background-color: var(--input-background-focus) !important; /* 포커스 시 배경색 (#fff) */
+  box-shadow: 0 0 0 3px var(--primary-soft) !important;
+}
+
+/* 7. Action Buttons */
+.scrm-btn, button {
+  font-family: 'Pretendard', sans-serif !important;
+  height: 30px !important;
+  padding: 0 16px !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* 버튼 내부 아이콘은 위에서 정의한 Font Awesome/XEIcon 스타일 적용 */
+
+.scrm-btn.blue { 
+  background-color: var(--primary) !important; 
+  border: none !important;
+}
+
+.scrm-btn.blue:hover { 
+  background-color: var(--primary-hover) !important; 
+}
+
+/* md blue 버튼 스타일 변경 (rgb(60, 71, 96)) */
+.scrm-btn.md.blue {
+  background-color: rgb(60, 71, 96) !important;
+  border: none !important;
+  color: #FFFFFF !important;
+}
+
+.scrm-btn.md.blue:hover {
+  background-color: rgb(50, 60, 80) !important; /* 호버 시 약간 어둡게 */
+}
+
+/* 새로운 다크 블루 버튼 스타일 (다른 크기에서도 사용 가능) */
+.scrm-btn.dark-blue {
+  background-color: rgb(60, 71, 96) !important;
+  border: none !important;
+  color: #FFFFFF !important;
+}
+
+.scrm-btn.dark-blue:hover {
+  background-color: rgb(50, 60, 80) !important; /* 호버 시 약간 어둡게 */
+}
+
+/* 8. Bottom MDI Tabs (Fixed) */
+.scrm-tray-panel {
+  background-color: var(--surface) !important;
+  height: 40px !important; /* 높이 축소 */
+  border-top: 1px solid var(--border) !important;
+  padding: 0 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  /* position: fixed !important; */
+  bottom: 0 !important;
+  /* left: 0 !important; */
+  /* width: 100% !important; */
+  z-index: 100 !important;
+}
+
+.scrm-tray-div {
+  height: 40px !important;
+  width: 100% !important;
+}
+
+.scrm-tray-div > ul {
+  margin: 0 !important;
+  height: 40px !important;
+  align-items: center !important;
+}
+
+.scrm-tray-div > ul > li {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--text-sub) !important;
+  margin-right: 4px !important;
+  padding: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  height: 40px !important;
+  margin-top: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.scrm-tray-div-li-div {
+  font-size: 12px !important; /* 글꼴 크기 축소 */
+  font-weight: 500 !important; /* 활성화되지 않은 글꼴은 500 */
+  height: 40px !important;
+  line-height: 40px !important;
+  padding: 0 10px !important;
+  color: inherit !important;
+  font-family: 'Pretendard', sans-serif !important;
+}
+
+.scrm-tray-div > ul > li.scrm-tray-div-li-selected {
+  background-color: var(--primary-soft) !important;
+  border-bottom: 2px solid var(--primary) !important;
+}
+
+.scrm-tray-div > ul > li.scrm-tray-div-li-selected .scrm-tray-div-li-div {
+  color: var(--primary) !important;
+  font-weight: bold !important; /* 활성화 시 font-weight: bold */
+}
+
+/* MDI 좌우 이동 버튼 및 모든 창 닫기 버튼 색 조정 */
+.scrm-tray-panel .scrm-tray-btn-prev,
+.scrm-tray-panel .scrm-tray-btn-next,
+.scrm-tray-panel .scrm-tray-btn-close {
+  background-color: transparent !important;
+  color: var(--text-sub) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+  width: 26px !important;
+  height: 26px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 2px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  position: relative !important;
+  top: 0 !important; /* 위치 보정 제거 */
+}
+
+
+
+.scrm-tray-panel .scrm-tray-btn-prev::before,
+.scrm-tray-panel .scrm-tray-btn-next::before,
+.scrm-tray-panel .scrm-tray-btn-close::before {
+  color: inherit !important;
+  font-size: 12px !important;
+}
+
+.scrm-tray-panel .scrm-tray-btn-prev:hover,
+.scrm-tray-panel .scrm-tray-btn-next:hover {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  background-color: var(--primary-soft) !important;
+}
+
+.scrm-tray-panel .scrm-tray-btn-close {
+  color: var(--text-muted) !important;
+}
+
+.scrm-tray-panel .scrm-tray-btn-close:hover {
+  color: #EF4444 !important;
+  border-color: #EF4444 !important;
+  background-color: #FEF2F2 !important;
+}
+
+/* MDI 탭 내 닫기 버튼 스타일 */
+.scrm-tray-div-btn-close {
+  margin-left: 0 !important;
+  margin-right: 8px !important;
+  width: 16px !important;
+  height: 16px !important;
+  background: none !important;
+  border: none !important;
+  color: var(--text-muted) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.scrm-tray-div-btn-close:hover {
+  color: #EF4444 !important;
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  border-radius: 50% !important;
+}
+
+.scrm-tray-div-btn-close::before {
+  content: '\f00d' !important; /* FontAwesome close */
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+  font-size: 10px !important;
+}

@@ -1,0 +1,26 @@
+services:
+  admin-frontend:
+    # [이름 규칙] 전 서비스 공통: helpdesk-{서비스}. 근거: docs/CLAUDE.md §4-1
+    image: helpdesk-admin-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile.build
+    container_name: helpdesk-admin-frontend
+    ports:
+      - "${APP_HTTP_PORT}:80"   # HTTP
+      - "${APP_HTTPS_PORT}:443"   # HTTPS
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/chatcall/logs/admin-frontend:/var/log/nginx
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      TZ: Asia/Seoul
+    restart: unless-stopped
+    networks:
+      - admin-net
+
+networks:
+  admin-net:
+    driver: bridge

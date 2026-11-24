@@ -1,0 +1,70 @@
+{
+  "success": true,
+  "message": "통장거래내역조회가 완료되었습니다.",
+  "data": [
+    {
+      "alTrnsDt": "20241215",
+      "alProcChGbNm": "입금",
+      "alRmrk": "급여 입금",
+      "alDrawAmt": "0",
+      "alRealIntAmt": "850",
+      "alDpstAmt": "3500000",
+      "alSubtRm": "8450850",
+      "alObrchAmt": "0"
+    },
+    {
+      "alTrnsDt": "20241210",
+      "alProcChGbNm": "출금",
+      "alRmrk": "ATM 현금인출",
+      "alDrawAmt": "200000",
+      "alRealIntAmt": "0",
+      "alDpstAmt": "0",
+      "alSubtRm": "4950000",
+      "alObrchAmt": "0"
+    },
+    {
+      "alTrnsDt": "20241205",
+      "alProcChGbNm": "이체",
+      "alRmrk": "온라인 쇼핑 결제",
+      "alDrawAmt": "125000",
+      "alRealIntAmt": "0",
+      "alDpstAmt": "0",
+      "alSubtRm": "5150000",
+      "alObrchAmt": "0"
+    },
+    {
+      "alTrnsDt": "20241201",
+      "alProcChGbNm": "입금",
+      "alRmrk": "예탁이자 지급",
+      "alDrawAmt": "0",
+      "alRealIntAmt": "45600",
+      "alDpstAmt": "45600",
+      "alSubtRm": "5275000",
+      "alObrchAmt": "0"
+    },
+    {
+      "alTrnsDt": "20241128",
+      "alProcChGbNm": "입금",
+      "alRmrk": "수표입금",
+      "alDrawAmt": "0",
+      "alRealIntAmt": "0",
+      "alDpstAmt": "500000",
+      "alSubtRm": "5229400",
+      "alObrchAmt": "500000"
+    }
+  ],
+  "totalCount": 5,
+  "pageInfo": {
+    "currentPage": 1,
+    "pageSize": 10,
+    "totalPages": 1
+  },
+  "requestUrl": "/api/cns/cns0100/r01",
+  "requestData": {
+    "alAcctNo": "12345678901234567890",
+    "alAcctPw": "****",
+    "alStndDtFr": "20241101",
+    "alStndDtTo": "20241231"
+  },
+  "timestamp": "2025-01-14T10:30:00.000Z"
+}

@@ -1,0 +1,38 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+
+# ★ .env 자체를 막는다. CRA 템플릿 기본값은 `.env.local` 만 막아서
+#   <정작 사람들이 실제로 만드는 `.env`>가 그대로 커밋된다.
+#   커밋해야 하는 것은 값이 없는 .env.example 뿐이다.
+.env
+.env.*
+!.env.example
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 로컬 기동 로그(vite 리다이렉트). 개인정보·토큰이 섞일 수 있어 커밋 대상이 아니다.
+#
+# 위 세 줄은 «이름이 못박혀» 있어 `run-vite.log`·`run-vite.err.log` 가 안 걸렸다 —
+# `git status` 에 늘 떠 있었고, 공유 작업트리에서 그것이 해롭다: 남의 미완성 파일과 섞여
+# <무엇이 내 것인지> 보기 어려워지고, 그 상태로 `git add -A` 하면 남의 것이 딸려
+# 들어간다(2026-09-04 실제 사고). 사람마다 리다이렉트 이름을 다르게 써서 두 벌로 둔다.
+run-*.log
+*-vite.log
+
+package-lock.json
+.vscode/tasks.json

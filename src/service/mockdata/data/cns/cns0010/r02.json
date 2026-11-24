@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "message": "생년월일로 고객정보 조회가 완료되었습니다.",
+  "data": {
+    "customerInfo": [
+      {
+        "CustmNo": "CUST002",
+        "PsnlCorpCode": "11",
+        "CustmNm": "김철수",
+        "CustmStatCode": "01",
+        "CustmStatCodeNm": "활성",
+        "AcntNo": "98765432109876543210",
+        "CustmDob": "19900722",
+        "Age": 34,
+        "SexCodeNm": "남성",
+        "CustmHpNo": "010-9876-5432",
+        "CustmHomeTelNo": "02-5555-1234",
+        "CustmWkplcTelNo": "02-4444-5678",
+        "EmailAddr": "kim.chulsoo@email.com",
+        "CustmAddr": "서울특별시 서초구 서초대로 456, 789동 101호",
+        "ScrDivTpCode": "1"
+      }
+    ],
+    "totalCount": 1,
+    "pageInfo": {
+      "currentPage": 1,
+      "pageSize": 10,
+      "totalPages": 1
+    }
+  }
+} 

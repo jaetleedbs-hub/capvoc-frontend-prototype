@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "message": "은행제휴계좌로 고객정보 조회가 완료되었습니다.",
+  "data": {
+    "customerInfo": [
+      {
+        "CustmNo": "CUST003",
+        "PsnlCorpCode": "11",
+        "CustmNm": "이영희",
+        "CustmStatCode": "02",
+        "CustmStatCodeNm": "비활성",
+        "AcntNo": "11223344556677889900",
+        "CustmDob": "19881108",
+        "Age": 36,
+        "SexCodeNm": "여성",
+        "CustmHpNo": "010-5555-1234",
+        "CustmHomeTelNo": "02-7777-8888",
+        "CustmWkplcTelNo": "02-6666-9999",
+        "EmailAddr": "lee.younghee@email.com",
+        "CustmAddr": "서울특별시 마포구 홍대로 789, 101동 202호",
+        "ScrDivTpCode": "1"
+      }
+    ],
+    "totalCount": 1,
+    "pageInfo": {
+      "currentPage": 1,
+      "pageSize": 10,
+      "totalPages": 1
+    }
+  }
+} 

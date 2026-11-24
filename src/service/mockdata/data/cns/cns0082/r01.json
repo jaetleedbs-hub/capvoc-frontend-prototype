@@ -1,0 +1,156 @@
+{
+  "success": true,
+  "message": "계좌정보 조회가 완료되었습니다.",
+  "data": [
+    {
+      "ClntCnfNo": "CUST001",
+      "IndvAcntNo": "12345678901234567890",
+      "BrnNm": "강남지점",
+      "BrnNo": "001",
+      "MgmtPsnNm": "이영희",
+      "PdptnNm": "통합매매계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20200115",
+      "LastTrdDt": "20240710",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST002",
+      "IndvAcntNo": "98765432109876543210",
+      "BrnNm": "역삼지점",
+      "BrnNo": "005",
+      "MgmtPsnNm": "박지훈",
+      "PdptnNm": "통합매매계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20210320",
+      "LastTrdDt": "20240625",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST003",
+      "IndvAcntNo": "11223344556677889900",
+      "BrnNm": "홍대지점",
+      "BrnNo": "009",
+      "MgmtPsnNm": "이지원",
+      "PdptnNm": "통합매매계좌",
+      "AcntStatNm": "비활동",
+      "AcntOpnDt": "20220101",
+      "LastTrdDt": "20241010",
+      "CloseDt": "20241015"
+    },
+    {
+      "ClntCnfNo": "CUST004",
+      "IndvAcntNo": "22334455667788990011",
+      "BrnNm": "서초지점",
+      "BrnNo": "002",
+      "MgmtPsnNm": "최민준",
+      "PdptnNm": "통합매매계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20190501",
+      "LastTrdDt": "20240715",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST005",
+      "IndvAcntNo": "33445566778899001122",
+      "BrnNm": "잠실지점",
+      "BrnNo": "003",
+      "MgmtPsnNm": "한지수",
+      "PdptnNm": "통합매매연계펀드계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20220810",
+      "LastTrdDt": "20240701",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST001",
+      "IndvAcntNo": "44556677889900112233",
+      "BrnNm": "서초지점",
+      "BrnNo": "002",
+      "MgmtPsnNm": "최민준",
+      "PdptnNm": "통합매매계좌",
+      "AcntStatNm": "비활동",
+      "AcntOpnDt": "20230201",
+      "LastTrdDt": "20240705",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST002",
+      "IndvAcntNo": "55667788990011223344",
+      "BrnNm": "명동지점",
+      "BrnNo": "004",
+      "MgmtPsnNm": "김유진",
+      "PdptnNm": "통합매매계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20220120",
+      "LastTrdDt": "20240708",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST003",
+      "IndvAcntNo": "66778899001122334455",
+      "BrnNm": "강남지점",
+      "BrnNo": "001",
+      "MgmtPsnNm": "이영희",
+      "PdptnNm": "통합매매연계펀드계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20230610",
+      "LastTrdDt": "20240530",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST004",
+      "IndvAcntNo": "77889900112233445566",
+      "BrnNm": "송도지점",
+      "BrnNo": "008",
+      "MgmtPsnNm": "박성민",
+      "PdptnNm": "통합매매연계펀드계좌",
+      "AcntStatNm": "비활동",
+      "AcntOpnDt": "20230701",
+      "LastTrdDt": "20241120",
+      "CloseDt": "20241130"
+    },
+    {
+      "ClntCnfNo": "CUST005",
+      "IndvAcntNo": "88990011223344556677",
+      "BrnNm": "분당지점",
+      "BrnNo": "006",
+      "MgmtPsnNm": "오윤아",
+      "PdptnNm": "통합매매계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20240101",
+      "LastTrdDt": "20240712",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST001",
+      "IndvAcntNo": "99001122334455667788",
+      "BrnNm": "잠실지점",
+      "BrnNo": "003",
+      "MgmtPsnNm": "한지수",
+      "PdptnNm": "통합매매계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20230915",
+      "LastTrdDt": "20240703",
+      "CloseDt": ""
+    },
+    {
+      "ClntCnfNo": "CUST002",
+      "IndvAcntNo": "11223344556677889900",
+      "BrnNm": "분당지점",
+      "BrnNo": "006",
+      "MgmtPsnNm": "오윤아",
+      "PdptnNm": "통합매매연계펀드계좌",
+      "AcntStatNm": "활동",
+      "AcntOpnDt": "20240301",
+      "LastTrdDt": "20240620",
+      "CloseDt": ""
+    }
+  ],  
+  "totalCount": 12,
+  "pageInfo": {
+    "currentPage": 1,
+    "pageSize": 10,
+    "totalPages": 2
+  }
+} 

@@ -1,0 +1,117 @@
+.scrm-notification-layer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.scrm-notification-message-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* 메시지 전환(fade) 애니메이션을 위한 컨테이너 */
+.scrm-notification-message {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    opacity: 0; /* 기본적으로 투명 */
+}
+
+/* 아이콘을 앞으로 배치하고 고정 */
+.scrm-notification-actions {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 5px;
+    flex-shrink: 0; /* 아이콘 영역이 줄어들지 않도록 설정 */
+}
+
+.scrm-notification-actions i {
+    cursor: pointer;
+    margin: 0 2px; /* 간격 수정 */
+    font-size: 16px;
+    color: #868e96;
+}
+.scrm-notification-actions i:hover {
+    opacity: 1;
+}
+
+/* .scrm-notification-actions i:hover {
+    color: #343a40;
+} */
+
+/* 텍스트를 감싸는 영역 (흐름 효과 제어) */
+.scrm-notification-text-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap; /* 텍스트가 길어도 한 줄로 표시 */
+    cursor: pointer;
+}
+
+.scrm-notification-text {
+    display: inline-block; /* 흐름 애니메이션을 위해 inline-block으로 설정 */
+}
+
+
+/* 긴 텍스트가 흐르는 애니메이션 (필요할 때만 JS로 클래스 추가) */
+.scrm-notification-text.scrolling {
+    padding-left: 100%;
+    animation: marquee-rtl 15s linear 1; /* 1회만 실행하도록 변경 */
+}
+
+.scrm-notification-text-wrapper:hover .scrm-notification-text.scrolling {
+    animation-play-state: paused;
+}
+
+
+/* Fade In/Out 애니메이션 */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-10px); }
+}
+
+/* 기존 흐름 애니메이션 (재사용) */
+@keyframes marquee-rtl {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Type-specific styling */
+.scrm-notification-text.normal {
+    color: #f2f9ff;
+}
+.scrm-notification-text.event {
+    color: #92e0ff; /* blue */
+    font-weight: 500;
+}
+.scrm-notification-text.urgent {
+    color: #ff9393; /* red */
+    font-weight: 500;
+}
+
+/* 중복 제거됨 */
+
+.scrm-notification-counter > span {
+    cursor: pointer;
+}

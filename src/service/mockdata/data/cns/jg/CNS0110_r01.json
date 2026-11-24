@@ -1,0 +1,67 @@
+{
+  "success": true,
+  "message": "출금가능금액조회가 완료되었습니다.",
+  "data": [
+    {
+      "alBllNo": "BL202412001",
+      "alInamtDt": "20241201",
+      "alInamtRm": "5000000",
+      "alPrd": "365",
+      "alIntr": "3.25",
+      "alIjaAmt": "162500",
+      "alIncmTax": "28438",
+      "alRsdTax": "2844",
+      "alTotIjaAmt": "131218",
+      "alAvailAmt": "5131218"
+    },
+    {
+      "alBllNo": "BL202411015",
+      "alInamtDt": "20241115",
+      "alInamtRm": "3000000",
+      "alPrd": "180",
+      "alIntr": "3.15",
+      "alIjaAmt": "46575",
+      "alIncmTax": "8151",
+      "alRsdTax": "815",
+      "alTotIjaAmt": "37609",
+      "alAvailAmt": "3037609"
+    },
+    {
+      "alBllNo": "BL202410020",
+      "alInamtDt": "20241020",
+      "alInamtRm": "2000000",
+      "alPrd": "91",
+      "alIntr": "3.05",
+      "alIjaAmt": "15232",
+      "alIncmTax": "2666",
+      "alRsdTax": "267",
+      "alTotIjaAmt": "12299",
+      "alAvailAmt": "2012299"
+    },
+    {
+      "alBllNo": "BL202409005",
+      "alInamtDt": "20240905",
+      "alInamtRm": "1500000",
+      "alPrd": "182",
+      "alIntr": "3.10",
+      "alIjaAmt": "23219",
+      "alIncmTax": "4063",
+      "alRsdTax": "406",
+      "alTotIjaAmt": "18750",
+      "alAvailAmt": "1518750"
+    }
+  ],
+  "totalCount": 4,
+  "pageInfo": {
+    "currentPage": 1,
+    "pageSize": 10,
+    "totalPages": 1
+  },
+  "requestUrl": "/api/cns/cns0110/r01",
+  "requestData": {
+    "alAcctNo": "12345678901234567890",
+    "alAcctPw": "****",
+    "alStndDt": "20241215"
+  },
+  "timestamp": "2025-01-14T10:30:00.000Z"
+}

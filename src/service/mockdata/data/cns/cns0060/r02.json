@@ -1,0 +1,116 @@
+{
+  "success": true,
+  "message": "고객정보 조회(PB - 2150) - 주소정보 조회가 완료되었습니다.",
+  "data": [
+    {
+      "CustmNo": "12345678901234567890",
+      "CustmNm": "홍길동",
+      "Out_ST": [
+        {
+          "AddrPtnCode": "01",
+          "AddrPtnNm": "자택",
+          "PostNo": "06123",
+          "AbdngAddr": "서울특별시 강남구 테헤란로 123",
+          "BlwdngAddr": "456동 789호",
+          "AddrAbnorYnNm": "정상"
+        },
+        {
+          "AddrPtnCode": "02",
+          "AddrPtnNm": "직장",
+          "PostNo": "06124",
+          "AbdngAddr": "서울특별시 강남구 테헤란로 456",
+          "BlwdngAddr": "789동 101호",
+          "AddrAbnorYnNm": "정상"
+        }
+      ]
+    },
+    {
+      "CustmNo": "98765432109876543210",
+      "CustmNm": "김철수",
+      "Out_ST": [
+        {
+          "AddrPtnCode": "01",
+          "AddrPtnNm": "자택",
+          "PostNo": "06611",
+          "AbdngAddr": "서울특별시 서초구 서초대로 456",
+          "BlwdngAddr": "789동 101호",
+          "AddrAbnorYnNm": "정상"
+        },
+        {
+          "AddrPtnCode": "02",
+          "AddrPtnNm": "직장",
+          "PostNo": "06612",
+          "AbdngAddr": "서울특별시 서초구 서초대로 789",
+          "BlwdngAddr": "101동 202호",
+          "AddrAbnorYnNm": "정상"
+        }
+      ]
+    },
+    {
+      "CustmNo": "11223344556677889900",
+      "CustmNm": "이영희",
+      "Out_ST": [
+        {
+          "AddrPtnCode": "01",
+          "AddrPtnNm": "자택",
+          "PostNo": "04066",
+          "AbdngAddr": "서울특별시 마포구 홍대로 789",
+          "BlwdngAddr": "101동 202호",
+          "AddrAbnorYnNm": "정상"
+        },
+        {
+          "AddrPtnCode": "02",
+          "AddrPtnNm": "직장",
+          "PostNo": "04067",
+          "AbdngAddr": "서울특별시 마포구 홍대로 101",
+          "BlwdngAddr": "202동 303호",
+          "AddrAbnorYnNm": "정상"
+        }
+      ]
+    },
+    {
+      "CustmNo": "22334455667788990011",
+      "CustmNm": "박민수",
+      "Out_ST": [
+        {
+          "AddrPtnCode": "01",
+          "AddrPtnNm": "자택",
+          "PostNo": "05551",
+          "AbdngAddr": "서울특별시 송파구 올림픽로 321",
+          "BlwdngAddr": "654동 987호",
+          "AddrAbnorYnNm": "정상"
+        },
+        {
+          "AddrPtnCode": "02",
+          "AddrPtnNm": "직장",
+          "PostNo": "05552",
+          "AbdngAddr": "서울특별시 송파구 올림픽로 654",
+          "BlwdngAddr": "987동 321호",
+          "AddrAbnorYnNm": "정상"
+        }
+      ]
+    },
+    {
+      "CustmNo": "33445566778899001122",
+      "CustmNm": "최지영",
+      "Out_ST": [
+        {
+          "AddrPtnCode": "01",
+          "AddrPtnNm": "자택",
+          "PostNo": "06123",
+          "AbdngAddr": "서울특별시 강남구 논현로 456",
+          "BlwdngAddr": "789동 321호",
+          "AddrAbnorYnNm": "정상"
+        },
+        {
+          "AddrPtnCode": "02",
+          "AddrPtnNm": "직장",
+          "PostNo": "06124",
+          "AbdngAddr": "서울특별시 강남구 논현로 789",
+          "BlwdngAddr": "321동 654호",
+          "AddrAbnorYnNm": "정상"
+        }
+      ]
+    }
+  ]
+} 

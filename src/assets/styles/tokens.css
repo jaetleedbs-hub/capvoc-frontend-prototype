@@ -1,0 +1,63 @@
+/* ============================================================================
+   CoreWorks Design Tokens — 이식본
+     출처: ai-pms/coreworks-frontend/src/containers/coreWorks/coreWorks.tokens.css
+     포크: bda81537 (2026-09-01)
+   ⛔ 값을 고치지 않았다. 고쳐야 하면 PORTED.md 에 무엇을 왜 고쳤는지 적는다.
+   ============================================================================ */
+/* ============================================================
+   CoreWorks — Design Tokens (--cw-* 변수)
+   런타임 개인 색상은 themePrefs.js / ThemeProvider가 덮어쓴다.
+   이 파일은 coreWorks.css 최상단에서 @import 된다.
+   ============================================================ */
+:root {
+  /* 개인 색상 — themePrefs.js / ThemeProvider에서 덮어씀 */
+  --cw-point: #007acc;
+  --cw-point-hover: #006aad;
+  --cw-point-light: #e6f2fa;
+  --cw-point-rgb: 0, 122, 204;
+  --cw-point-fg: #fff;
+  --cw-point-fg-muted: rgba(255,255,255,0.82);
+  --cw-point-on-light-fg: #1e293b;
+  --cw-primary-fg: var(--cw-point-fg);
+  --iconbar-w: 56px;
+  --iconbar-expanded-w: 188px;
+  --iconbar-bg: var(--cw-point);
+  --iconbar-hover: rgba(255,255,255,0.14);
+  --iconbar-active: rgba(255,255,255,0.2);
+  --iconbar-text: var(--cw-point-fg-muted);
+  --iconbar-text-active: var(--cw-point-fg);
+  --iconbar-logo-bg: #fff;
+  --iconbar-logo-fg: var(--cw-point);
+  --submenu-w: 220px;
+  --submenu-bg: #f5f3f1;
+  --work-view-bg: #f1f4f9;
+  --submenu-border: #e5e2de;
+  --cw-primary: var(--cw-point);
+  --cw-primary-hover: var(--cw-point-hover);
+  --cw-primary-light: var(--cw-point-light);
+  --cw-accent: #3b82f6;
+  --cw-success: #16a34a; --cw-success-light: #f0fdf4;
+  --cw-warning: #d97706; --cw-warning-light: #fffbeb;
+  --cw-danger: #dc2626;  --cw-danger-light: #fef2f2;
+  --cw-info: #2563eb;    --cw-info-light: #eff6ff;
+  --cw-bg: #f1f4f9;
+  --cw-card-bg: #fff;
+  --cw-text: #1e293b;
+  --cw-text-secondary: #64748b;
+  --cw-border: #e2e8f0;
+  --cw-radius: 8px;
+  --cw-shadow: 0 1px 3px rgba(0,0,0,.05);
+  --cw-dash-gap: 12px;
+  --cw-dash-pad: 8px;
+  --cw-shadow-md: 0 4px 8px rgba(0,0,0,.06);
+  --cw-gnb-h: 46px;
+  --cw-fs-2xs: 10px;
+  --cw-fs-xs: 11px;
+  --cw-fs-sm: 12px;
+  --cw-fs-base: 13px;
+  --cw-fs-md: 14px;
+  --cw-fs-lg: 17px;
+  --cw-fs-xl: 21px;
+  --cw-fs-2xl: 18px;
+  --cw-fs-display: 40px;
+}

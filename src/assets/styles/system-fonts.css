@@ -1,0 +1,143 @@
+/*!
+ * 시스템 폰트 최적화 - 오프라인 환경 완벽 지원
+ * 
+ * 이 방식의 장점:
+ * 1. 외부 네트워크 의존성 완전 제거
+ * 2. 즉시 로딩 (0ms)
+ * 3. OS별 최적화된 폰트 사용
+ * 4. 번들 크기 증가 없음
+ * 5. 모든 환경에서 일관된 성능
+ */
+
+/* ==========================================================================
+   시스템 폰트 스택 정의
+   ========================================================================== */
+
+:root {
+    /* Windows 환경 최적화 */
+    --font-windows: 'Malgun Gothic', '맑은 고딕', 'Segoe UI', sans-serif;
+    
+    /* macOS 환경 최적화 */
+    --font-macos: -apple-system, 'Apple SD Gothic Neo', 'SF Pro Display', sans-serif;
+    
+    /* Linux 환경 최적화 */
+    --font-linux: 'Noto Sans CJK KR', 'Noto Sans KR', 'Ubuntu', sans-serif;
+    
+    /* 범용 폰트 스택 (모든 환경 호환) */
+    --font-universal: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Noto Sans CJK KR', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    
+    /* 모노스페이스 폰트 (코드용) */
+    --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Liberation Mono', 'Menlo', monospace;
+}
+
+/* ==========================================================================
+   기본 폰트 설정
+   ========================================================================== */
+
+html, body {
+    font-family: var(--font-universal);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* ==========================================================================
+   OS별 폰트 최적화
+   ========================================================================== */
+
+/* Windows 환경 감지 및 최적화 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    html, body {
+        font-family: var(--font-windows);
+    }
+}
+
+/* macOS 환경 최적화 */
+@supports (-webkit-backdrop-filter: blur(1px)) {
+    html, body {
+        font-family: var(--font-macos);
+    }
+}
+
+/* ==========================================================================
+   컴포넌트별 폰트 설정
+   ========================================================================== */
+
+/* 버튼 폰트 */
+.scrm-btn, button {
+    font-family: var(--font-universal);
+    font-weight: 500;
+}
+
+/* 입력 필드 폰트 */
+input, textarea, select {
+    font-family: var(--font-universal);
+}
+
+/* 제목 폰트 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-universal);
+    font-weight: 600;
+}
+
+/* 코드 폰트 */
+code, pre, .code {
+    font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   폰트 가중치 최적화
+   ========================================================================== */
+
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* ==========================================================================
+   반응형 폰트 크기
+   ========================================================================== */
+
+/* 데스크톱 */
+@media (min-width: 1024px) {
+    html { font-size: 14px; }
+}
+
+/* 태블릿 */
+@media (max-width: 1023px) and (min-width: 768px) {
+    html { font-size: 13px; }
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+    html { font-size: 12px; }
+}
+
+/* ==========================================================================
+   접근성 최적화
+   ========================================================================== */
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+    html, body {
+        font-weight: 500;
+    }
+}
+
+/* 동작 감소 모드 지원 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* 다크 모드 폰트 최적화 */
+@media (prefers-color-scheme: dark) {
+    html, body {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}

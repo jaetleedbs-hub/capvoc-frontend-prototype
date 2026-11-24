@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    Nexsis 포탈 아이콘 «원본».
+    로그인 화면·아이콘바의 마크(NX)와 같은 모양이다 — 탭에서 보는 것과 화면에서 보는 것이 같아야 한다.
+
+    ★ 이 파일을 고치면 아래를 다시 만든다 (frontend 에서):
+         node scripts/build-icons.mjs
+       → favicon.ico · icon-192.png · icon-512.png 가 이 SVG 에서 다시 렌더된다.
+       손으로 그린 PNG 를 따로 두지 않는다. 원본이 둘이면 갈린다.
+  -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a8fe0"/>
+      <stop offset="1" stop-color="#005fa3"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#g)"/>
+  <text x="32" y="43" text-anchor="middle"
+        font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+        font-size="30" font-weight="800" letter-spacing="-1.5" fill="#fff">NX</text>
+</svg>

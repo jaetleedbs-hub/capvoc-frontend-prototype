@@ -1,0 +1,567 @@
+/* ============================================================================
+   admin-frontend — CoreWorks 3분할 셸과 공용 컴포넌트
+
+   원본: call-admin-frontend/src/styles/shell.css (CoreWorks 규격 발췌본)
+   + admin 전용 규칙(트레이 탭·GNB 위젯·서브메뉴 트리·MDI 조정·팝업 셸).
+   이식 대장: src/coreworks/PORTED.md
+
+   ⛔ 색·간격·크기를 여기서 새로 만들지 않는다. 반드시 --cw-* 토큰을 쓴다.
+   ⛔ src/coreworks/ 폴더에는 admin 규칙을 더하지 않는다 — 여기 쓴다.
+
+   로드 순서: component.css(전역 scrm-*) 뒤에 이 파일이 온다(src/index.js).
+   같은 요소를 두 벌이 잡으면 이쪽이 이긴다 — 그것이 의도다.
+   ============================================================================ */
+
+@import './tokens.css';
+@import '../../coreworks/coreworks.css';
+
+/* cw- 클래스가 붙은 요소만 border-box 로 둔다.
+   전역 * 선택자로 밀면 68개 레거시 화면의 폭 계산이 흔들린다(content-box 가정). */
+[class^='cw-'],
+[class*=' cw-'] {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light; /* CoreWorks 는 다크 팔레트가 없다 — 라이트 단일이다 */
+}
+
+body {
+  margin: 0;
+  background: var(--cw-bg);
+  color: var(--cw-text);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', 'Segoe UI',
+    'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, Roboto, 'Noto Sans KR', sans-serif;
+  font-size: var(--cw-fs-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── 3분할 셸 ─────────────────────────────────────────────────────────────── */
+.cw-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.cw-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.cw-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--work-view-bg, var(--cw-bg));
+}
+.cw-content-gnb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  height: 48px;
+  min-height: 48px;
+  flex-shrink: 0;
+  background: var(--cw-card-bg);
+  border-bottom: 1px solid var(--cw-border);
+}
+.cw-content-gnb-title {
+  font-size: var(--cw-fs-lg);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cw-gnb-right {
+  margin-left: auto;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: var(--cw-fs-sm);
+  color: var(--cw-text-secondary);
+}
+.cw-content {
+  flex: 1;
+  padding: 16px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── 컴포넌트 (CoreWorks 규격) ────────────────────────────────────────────── */
+/* ⛔ `.cw-content` 는 flex 컬럼이라 자식이 기본으로 줄어든다. 카드가 제 내용보다
+   작아지며 아래가 잘리는 실측 사례(원본 shell.css 주석 2건)가 있어 근원에서 막는다. */
+.cw-card {
+  background: var(--cw-card-bg);
+  border-radius: var(--cw-radius);
+  box-shadow: var(--cw-shadow);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.cw-card-header {
+  padding: 10px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cw-card-title {
+  font-size: var(--cw-fs-md);
+  font-weight: 700;
+}
+.cw-card-sub {
+  font-size: var(--cw-fs-sm);
+  color: var(--cw-text-secondary);
+}
+.cw-card-body {
+  padding: 14px;
+}
+
+.cw-badge {
+  display: inline-flex;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: var(--cw-fs-xs);
+  font-weight: 600;
+}
+.cw-badge.blue { background: #eff6ff; color: #2563eb; }
+.cw-badge.green { background: #f0fdf4; color: #16a34a; }
+.cw-badge.orange { background: #fffbeb; color: #d97706; }
+.cw-badge.red { background: #fef2f2; color: #dc2626; }
+.cw-badge.gray { background: #f1f5f9; color: #64748b; }
+
+.cw-btn-primary {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: var(--cw-fs-base);
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--cw-point);
+  color: var(--cw-point-fg);
+  border: none;
+}
+.cw-btn-primary:hover:not(:disabled) { background: var(--cw-point-hover); }
+.cw-btn-primary:disabled { opacity: 0.55; cursor: default; }
+.cw-btn-outline {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: var(--cw-fs-base);
+  font-weight: 600;
+  cursor: pointer;
+  background: #fff;
+  color: var(--cw-text-secondary);
+  border: 1px solid var(--cw-border);
+}
+.cw-btn-outline:hover {
+  border-color: var(--cw-primary);
+  color: var(--cw-primary);
+}
+.cw-btn-primary:focus-visible,
+.cw-btn-outline:focus-visible {
+  outline: 2px solid var(--cw-point);
+  outline-offset: 2px;
+}
+
+.cw-report-table {
+  width: 100%;
+  font-size: var(--cw-fs-base);
+}
+.cw-report-table th,
+.cw-report-table td {
+  border: 1px solid var(--cw-border);
+  padding: 7px 10px;
+  text-align: left;
+}
+.cw-report-table th {
+  background: var(--submenu-bg);
+  font-weight: 600;
+  color: var(--cw-text-secondary);
+  white-space: nowrap;
+}
+
+.cw-field {
+  display: block;
+  font-size: var(--cw-fs-sm);
+  color: var(--cw-text-secondary);
+  margin-bottom: 4px;
+}
+.cw-input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--cw-border);
+  border-radius: 6px;
+  background: #fff;
+}
+.cw-input:focus {
+  outline: none;
+  border-color: var(--cw-point);
+  box-shadow: 0 0 0 3px rgba(var(--cw-point-rgb), 0.12);
+}
+
+.cw-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+.cw-tile {
+  background: var(--cw-card-bg);
+  border-radius: var(--cw-radius);
+  box-shadow: var(--cw-shadow);
+  padding: 12px 14px;
+}
+.cw-tile .k { font-size: var(--cw-fs-sm); color: var(--cw-text-secondary); }
+.cw-tile .v {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.cw-tile .s { font-size: var(--cw-fs-xs); color: var(--cw-text-secondary); margin-top: 2px; }
+.cw-tile.ok .v { color: var(--cw-success); }
+.cw-tile.muted .v { color: var(--cw-text-secondary); }
+
+.cw-note {
+  background: var(--cw-info-light);
+  border-left: 3px solid var(--cw-info);
+  border-radius: 0 6px 6px 0;
+  padding: 9px 12px;
+  font-size: var(--cw-fs-sm);
+  color: #334155;
+}
+.cw-note.warn { background: var(--cw-warning-light); border-left-color: var(--cw-warning); }
+.cw-note.danger { background: var(--cw-danger-light); border-left-color: var(--cw-danger); }
+
+.cw-center {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  color: var(--cw-text-secondary);
+}
+.mono { font-variant-numeric: tabular-nums; }
+
+/* ============================================================================
+   여기부터 admin 전용 — CoreWorks 셸에 admin 의 기능(MDI 트레이·서버 메뉴 트리·
+   알림/CTI 위젯·팝업 창)을 태우기 위한 규칙.
+   ============================================================================ */
+
+/* ── 아이콘바 ─────────────────────────────────────────────────────────────── */
+/* 접힘(56px)에서는 로고 마크만 남긴다 — 원본은 텍스트가 잘린 채 새는데,
+   "ChatCall Admin" 은 길어서 마크까지 밀어낸다(실측: 'hatCall' 만 보였다) */
+.cw-iconbar:not(.expanded) .cw-ib-logo-text { display: none; }
+
+/* ── GNB 우측 위젯 ────────────────────────────────────────────────────────── */
+.cw-gnb-icon-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--cw-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
+.cw-gnb-icon-btn:hover { background: #f1f5f9; color: var(--cw-text); }
+.cw-gnb-icon-btn svg { width: 17px; height: 17px; }
+.cw-gnb-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.cw-gnb-user:hover { background: #f1f5f9; }
+.cw-gnb-user-photo {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.cw-gnb-user-name { font-size: var(--cw-fs-base); color: var(--cw-text); font-weight: 600; }
+.cw-gnb-user-ognz { font-size: var(--cw-fs-xs); color: var(--cw-text-secondary); }
+
+/* 헤더에서 이관한 공지 티커 — 옛 검정 헤더용 밝은 글자색을 GNB(흰 배경)에 맞춘다 */
+.cw-gnb-notice {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.cw-gnb-notice .scrm-notification-text.normal { color: var(--cw-text-secondary); }
+.cw-gnb-notice .scrm-notification-text.event { color: var(--cw-info); }
+.cw-gnb-notice .scrm-notification-text.urgent { color: var(--cw-danger); }
+
+/* ── 서브메뉴: 검색 + 메뉴 트리 (DB gdsMenu 2·3단계) ─────────────────────── */
+.cw-sm-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--cw-border);
+  flex-shrink: 0;
+}
+.cw-sm-search .cw-input { font-size: var(--cw-fs-sm); padding: 5px 8px; }
+.cw-sm-tree-children { display: flex; flex-direction: column; }
+.cw-sm-item .cw-sm-disclosure { margin-right: 2px; }
+.cw-sm-depth-2 { padding-left: 26px; }
+.cw-sm-depth-2.cw-sm-has-children { padding-left: 12px; }
+.cw-sm-depth-3 { padding-left: 40px; font-size: var(--cw-fs-base); }
+.cw-sm-empty { padding: 14px; font-size: var(--cw-fs-sm); color: #94a3b8; }
+
+/* ── 우측 슬라이드 패널(utildrawer) — 즐겨찾기·알림·마이메모 ─────────────── */
+/* 좌측은 메뉴 전용, 유틸 패널은 우측 — 두 영역이 겹치지 않는다(사용자 지시).
+   z-index 는 모달(9990~)보다 낮고 본문 위다. */
+.cw-util-drawer {
+  position: fixed;
+  /* GNB(48px) 아래에서 시작한다 — 위까지 덮으면 유틸 아이콘·사용자 정보가
+     드로어에 가려져 다시 누를 수 없다(실측: 재클릭이 드로어 헤더에 막혔다) */
+  top: 48px;
+  right: 0;
+  bottom: 0;
+  width: 340px;
+  max-width: 90vw;
+  background: var(--cw-card-bg);
+  border-left: 1px solid var(--cw-border);
+  box-shadow: -8px 0 24px rgba(15, 23, 42, 0.12);
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  animation: cw-drawer-in 0.22s ease;
+}
+@keyframes cw-drawer-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.cw-util-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 14px;
+  height: 48px;
+  min-height: 48px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--cw-border);
+}
+.cw-util-drawer-title {
+  font-size: var(--cw-fs-md);
+  font-weight: 700;
+}
+.cw-util-drawer-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.cw-util-drawer-body > * { flex: 1; min-height: 0; }
+
+/* GNB 유틸 아이콘 — 활성(드로어 열림) 표시와 건수 배지 */
+.cw-gnb-icon-btn.active {
+  background: var(--cw-point-light);
+  color: var(--cw-point-on-light-fg);
+}
+.cw-gnb-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #ef4444;
+  color: #fff;
+  font-size: var(--cw-fs-2xs);
+  font-weight: 700;
+  min-width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  border: 1.5px solid var(--cw-card-bg);
+}
+
+/* ── MDI 트레이 → GNB 아래 상단 탭 띠 ────────────────────────────────────── */
+.cw-main .scrm-tray-panel {
+  width: 100%;
+  height: 38px;
+  min-height: 38px;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--cw-card-bg);
+  border-bottom: 1px solid var(--cw-border) !important;
+  border-top: none !important;
+}
+.cw-main .scrm-tray-panel .scrm-lfloat-div { float: none; flex: 1; min-width: 0; }
+.cw-main .scrm-tray-panel .scrm-rfloat-div {
+  float: none;
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  align-items: center;
+  padding-right: 10px;
+  background: var(--cw-card-bg);
+}
+.cw-main .scrm-tray-div { height: 38px; overflow: hidden; }
+.cw-main .scrm-tray-div > ul { margin: 0 0 0 8px; height: 38px; align-items: stretch; }
+.cw-main .scrm-tray-div > ul > li {
+  height: 38px;
+  margin: 0 2px 0 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--cw-text-secondary);
+  border-bottom: 2px solid transparent;
+  font-weight: 400;
+}
+.cw-main .scrm-tray-div > ul > li:hover {
+  color: var(--cw-text);
+  background: #f8fafc;
+}
+.cw-main .scrm-tray-div > ul > li.scrm-tray-div-li-selected {
+  background: transparent !important;
+  color: var(--cw-point) !important;
+  border-bottom-color: var(--cw-point);
+  font-weight: 600;
+}
+.cw-main .scrm-tray-div > ul > li > div {
+  height: 36px;
+  line-height: 36px;
+  font-size: var(--cw-fs-base);
+}
+.cw-main .scrm-tray-div-li-selected .scrm-tray-div-btn-close { color: var(--cw-point) !important; }
+.cw-main .scrm-tray-div-btn-close { height: 36px; }
+
+/* ── MDI 본문 — 기존 scrm-main-view-* 를 flex 셸에 맞춘다 ────────────────── */
+.cw-main .cw-mdi-host {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.cw-main .scrm-main-view-area {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  overflow: hidden;
+  background: var(--work-view-bg, var(--cw-bg));
+  padding: 14px 16px;
+}
+/* 화면 제목 바(scrm-main-view-title-container)는 없앴다 — 제목이 GNB·탭과 3중이었다.
+   ☆·상태메시지·초기화는 GNB 로 이관: 아래는 그 이관분의 GNB 맞춤 규칙 */
+.cw-content-gnb .scrm-main-view-favorite-icon {
+  flex-shrink: 0;
+  margin-right: -4px;
+}
+.cw-gnb-status {
+  min-width: 0;
+  overflow: hidden;
+  flex-shrink: 1;
+}
+.cw-gnb-status .header-message-layer {
+  font-size: var(--cw-fs-sm);
+  color: var(--cw-text-secondary);
+  white-space: nowrap;
+}
+.cw-gnb-status[hidden] { display: none !important; }
+.cw-empty-tray {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--cw-text-secondary);
+  font-size: var(--cw-fs-md);
+}
+
+/* ── 환경설정(COM0030) 모달 본문 ──────────────────────────────────────────── */
+.cw-theme-settings {
+  padding: 16px;
+  background: #fff;
+  min-height: 100%;
+}
+.cw-theme-settings .cw-theme-color-actions {
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+/* ── 팝업 창(popupbase) 셸 ────────────────────────────────────────────────── */
+.cw-popup-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--cw-bg);
+}
+.cw-popup-gnb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  height: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  background: var(--iconbar-bg);
+  color: var(--iconbar-text-active);
+}
+.cw-popup-gnb-title { font-size: var(--cw-fs-md); font-weight: 700; }
+.cw-popup-gnb .cw-popup-close {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+}
+.cw-popup-gnb .cw-popup-close:hover { background: var(--iconbar-hover); }
+.cw-popup-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 12px;
+}
+
+/* ── 감춘 회원사 안내 (BO202_T0) ───────────────────────────────────────────
+   use_yn='N' 인 회원사의 상세를 열었을 때 띄운다.
+
+   왜 필요한가 — 목록에는 없는데 상세는 열린다. 그것을 <결함>으로 읽으면
+   "감춤이 뚫렸다"는 오해가 되고, 실제로 그렇게 보고된 적이 있다(2026-09-04).
+   막는 대신 <보이게> 하는 쪽을 골랐다. 막으면 감춘 것을 되살릴 길이 사라진다.
+
+   경고(warning) 톤을 쓰되 danger 는 쓰지 않는다 — 고장이 아니라 상태이기 때문이다. */
+.cw-hidden-company-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0 0 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--cw-warning, #d97706);
+  border-left-width: 3px;
+  border-radius: 4px;
+  background: var(--cw-warning-light, #fffbeb);
+  color: var(--cw-text, #1e293b);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.cw-hidden-company-notice strong { color: var(--cw-warning, #d97706); }
+.cw-hidden-company-notice span   { color: var(--cw-text-secondary, #64748b); }

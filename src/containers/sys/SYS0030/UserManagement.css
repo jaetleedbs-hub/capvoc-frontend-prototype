@@ -1,0 +1,125 @@
+table {
+    width: 100%;
+}
+table .scrm-table-td .scrm-user-select{
+    border: unset !important;
+}
+.user-photo-container {
+    width: 10%;
+}
+.user-photo{
+    height: 171px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    position: relative;
+    cursor: pointer;
+}
+
+.user-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #6c757d;
+}
+
+.photo-placeholder .fas {
+    font-size: 24px;
+}
+
+.photo-upload-btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.fa-camera:not(.empty-photo) {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+.photo-upload-btn::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.user-photo:hover .photo-upload-btn::after, .user-photo:hover .fa-camera {
+    opacity: 1;
+}
+
+.photo-upload-btn .fas {
+    color: white;
+    font-size: 14px;
+}
+.read-only{
+    background-color: #ced4da;
+    color: #868e96;
+    cursor: not-allowed;
+}
+.sys-table-detail .scrm-label-div > span {
+    line-height: unset;
+}
+.sys-table-detail .scrm-table-td .scrm-label-span {
+    font-size: 13px;
+    font-weight: normal;
+}
+.sys-table-detail .scrm-input-div{
+    /* max-height: 30px; */
+}
+.sys-table-detail .scrm-label-div > span, .user-photo-container .scrm-label-div > span {
+    line-height: unset;
+}
+.sys-table-detail .SingleDatePicker, .SingleDatePickerInput{
+    width: calc(100% - 1px);
+    padding-right: unset;
+}
+.sys-table-detail .SingleDatePickerInput{
+    line-height: unset;
+}
+.sys-table-detail .SingleDatePickerInput__showClearDate{
+    padding-right: unset;
+    display: flex;
+    align-items: center;
+}
+.sys-table-detail .SingleDatePickerInput_clearDate{
+    display: flex;
+    top: unset;
+    transform: unset;
+}
+.sys-table-detail .DateInput{
+    width: calc(100% - 48px) !important;
+}
+.sys-table-detail .SingleDatePickerInput_calendarIcon{
+    margin: unset;
+    vertical-align: unset;
+    padding: unset;
+    display: flex;
+}
+/* .sys-search-panel.scrm-search-div .scrm-label-div > span{
+    min-width: 60px !important;
+} */

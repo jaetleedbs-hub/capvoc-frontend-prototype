@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "message": "고객정보 추가 조회(PB - 2150) - 고객등급 조회가 완료되었습니다.",
+  "data": [
+    {
+      "ClntNo": "12345678901234567890",
+      "AcntNo": "1234567890",
+      "ClngrdCode": "01",
+      "ClntGrdNm": "VIP",
+      "PoiNoteDocRegYn": "Y",
+      "LastInclnGrdNm": "공격투자형"
+    },
+    {
+      "ClntNo": "98765432109876543210",
+      "AcntNo": "9876543210",
+      "ClngrdCode": "02",
+      "ClntGrdNm": "일반",
+      "PoiNoteDocRegYn": "N",
+      "LastInclnGrdNm": "성장투자형"
+    },
+    {
+      "ClntNo": "11223344556677889900",
+      "AcntNo": "1122334455",
+      "ClngrdCode": "03",
+      "ClntGrdNm": "VVIP",
+      "PoiNoteDocRegYn": "Y",
+      "LastInclnGrdNm": "안정투자형"
+    },
+    {
+      "ClntNo": "22334455667788990011",
+      "AcntNo": "2233445566",
+      "ClngrdCode": "02",
+      "ClntGrdNm": "일반",
+      "PoiNoteDocRegYn": "N",
+      "LastInclnGrdNm": "보수투자형"
+    },
+    {
+      "ClntNo": "33445566778899001122",
+      "AcntNo": "3344556677",
+      "ClngrdCode": "01",
+      "ClntGrdNm": "VIP",
+      "PoiNoteDocRegYn": "Y",
+      "LastInclnGrdNm": "공격투자형"
+    }
+  ]
+} 

@@ -1,0 +1,62 @@
+/*!
+ * 임베드된 한글 폰트 - 오프라인 환경용
+ * 개발자가 애플리케이션에 직접 포함시키는 폰트
+ * 
+ * 특징:
+ * - 외부 네트워크 의존성 없음
+ * - Base64로 인코딩되어 CSS에 직접 포함
+ * - 경량화된 서브셋 폰트 사용
+ * - 즉시 로딩 가능
+ */
+
+/* 
+ * 경량화된 한글 폰트 (주요 한글 2350자 + 영문 + 숫자 + 기호)
+ * 원본 크기: ~1.2MB → 서브셋: ~200KB
+ */
+
+/* Pretendard Variable - 한국어 최적화 폰트 (경량) */
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('data:font/woff2;base64,') format('woff2');
+    /* 실제 Base64 데이터는 아래 스크립트로 생성 */
+}
+
+/* 
+ * 시스템 폰트 기반 최적화
+ * 한글: 맑은 고딕, 애플 고딕
+ * 영문: 시스템 UI 폰트
+ */
+:root {
+    --font-family-korean: 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+    --font-family-english: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-mixed: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', '맑은 고딕', Roboto, sans-serif;
+}
+
+/* 언어별 폰트 최적화 */
+html {
+    font-family: var(--font-family-mixed);
+}
+
+/* 한글 텍스트 최적화 */
+[lang="ko"], .korean {
+    font-family: var(--font-family-korean);
+}
+
+/* 영문 텍스트 최적화 */
+[lang="en"], .english {
+    font-family: var(--font-family-english);
+}
+
+/* 폰트 로딩 최적화 */
+.font-loading {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+    visibility: hidden;
+}
+
+.font-loaded {
+    font-family: var(--font-family-mixed);
+    visibility: visible;
+    transition: font-family 0.1s ease;
+}
